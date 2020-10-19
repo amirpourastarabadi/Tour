@@ -40,7 +40,13 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->tourAdminNamespace)
                 ->group(base_path('routes/tourAdmin/web.php'));
 
-            Route::middleware('web')
+            Route::middleware(['web', 'auth'])
+                ->name('admin.')
+                ->prefix('admin/')
+                ->namespace($this->adminNamespace)
+                ->group(base_path('routes/admin/passengers.php'));
+
+            Route::middleware(['web', 'auth'])
                 ->namespace($this->adminNamespace)
                 ->group(base_path('routes/admin/web.php'));
 
