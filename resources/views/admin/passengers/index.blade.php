@@ -9,10 +9,33 @@
 </head>
 <body>
 
-<a href="{{route('admin.passenger.create')}}"><h3>create new passenger</h3></a>
-@foreach($items as $item)
-    {{$item->national_code}}
-@endforeach
+<a href="{{route('admin.passengers.create')}}"><h3>create new passenger</h3></a>
+@auth
+@endauth
+
+@guest
+    bye
+@endguest
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">name</th>
+        <th scope="col">last name</th>
+        <th scope="col">phone number</th>
+        <th scope="col">national code</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach($items as $item)
+        <tr>
+            <td>{{Auth::user()->first_name}}</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td{{$item->national_code}}</td>
+        </tr>
+    @endforeach
+    </tbody>
+</table>
 
 </body>
 </html>
