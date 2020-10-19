@@ -23,6 +23,7 @@
         <th scope="col">last name</th>
         <th scope="col">phone number</th>
         <th scope="col">national code</th>
+        <th scope="col">operations</th>
     </tr>
     </thead>
     <tbody>

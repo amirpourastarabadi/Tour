@@ -16,7 +16,7 @@ class CreatePassengersTable extends Migration
             $table->string('national_code', 10)->unique();
             $table->date('birthday')->nullable();
             $table->string('email')->nullable()->unique();
-            $table->string('mobile_number', '14')->unique();
+            $table->string('mobile_number', 20)->unique();
             $table->timestamp('mobile_number_verified_at')->nullable();
             $table->string('password');
             $table->timestamps();
