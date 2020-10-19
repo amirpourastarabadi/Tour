@@ -36,12 +36,15 @@
                                                 <td>{{$item->email}}</td>
                                                 <td>{{$item->mobile_number}}</td>
                                                 <td>
-                                                    <a href="{{ route('admin.passengers.edit', $item) }}">edit</a>
-                                                    <form action="{{route('admin.passengers.destroy', $item)}}" method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <input type="submit" value="delete">
-                                                    </form>
+                                                    <div class="row">
+                                                        <a class="btn btn-sm" href="{{ route('admin.passengers.edit', $item) }}">Edit</a>
+                                                        <form action="{{route('admin.passengers.destroy', $item)}}" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class=" btn btn-sm" type="submit" value="delete">Delete</button>
+                                                        </form>
+                                                    </div>
+
                                                 </td>
                                             </tr>
                                         @endforeach
