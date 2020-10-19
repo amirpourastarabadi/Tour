@@ -11,11 +11,14 @@ class CreatePassengersTable extends Migration
     {
         Schema::create('passengers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->string('email')->nullable()->unique();
-            $table->string('telephone_number', 20)->nullable()->unique();
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('national_code', 10)->unique();
             $table->date('birthday')->nullable();
+            $table->string('email')->nullable()->unique();
+            $table->string('mobile_number', '14')->unique();
+            $table->timestamp('mobile_number_verified_at')->nullable();
+            $table->string('password');
             $table->timestamps();
         });
     }
