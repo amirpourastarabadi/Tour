@@ -10,12 +10,7 @@
 <body>
 
 <a href="{{route('admin.passengers.create')}}"><h3>create new passenger</h3></a>
-@auth
-@endauth
 
-@guest
-    bye
-@endguest
 <table class="table">
     <thead class="thead-dark">
     <tr>

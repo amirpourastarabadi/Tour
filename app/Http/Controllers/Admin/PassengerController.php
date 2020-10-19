@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PassengerRequest;
 use App\Models\Passenger;
 use Illuminate\Http\Request;
 
@@ -18,13 +19,13 @@ class PassengerController extends Controller
 
     public function create()
     {
-        dd();
+        return view('admin.passengers.create');
     }
 
 
-    public function store(Request $request)
+    public function store(PassengerRequest $request)
     {
-        //
+        dd($request->toArray());
     }
 
 
