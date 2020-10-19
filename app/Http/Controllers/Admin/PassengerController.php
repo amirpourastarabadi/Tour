@@ -12,7 +12,7 @@ class PassengerController extends Controller
 
     public function index()
     {
-        $items = Passenger::all();
+        $items = Passenger::latest()->paginate(5);
         return view('admin.passengers.index')->withItems($items);
     }
 
@@ -25,7 +25,8 @@ class PassengerController extends Controller
 
     public function store(PassengerRequest $request)
     {
-        dd($request->toArray());
+        Passenger::create($request->all());
+        return redirect(route('admin.passengers.index'));
     }
 
 
@@ -37,18 +38,21 @@ class PassengerController extends Controller
 
     public function edit(Passenger $passenger)
     {
-        //
+        return view('admin.passengers.edit')->withPassenger($passenger);
     }
 
 
     public function update(Request $request, Passenger $passenger)
     {
-        //
+        $passenger->update($request->all());
+        return redirect(route('admin.passengers.index'));
     }
 
 
     public function destroy(Passenger $passenger)
     {
-        //
+        $passenger->delete();
+        return redirect(route('admin.passengers.index'));
+
     }
 }
