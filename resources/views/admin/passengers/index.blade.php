@@ -19,21 +19,29 @@
 <table class="table">
     <thead class="thead-dark">
     <tr>
-        <th scope="col">name</th>
+        <th scope="col">first name</th>
         <th scope="col">last name</th>
-        <th scope="col">phone number</th>
         <th scope="col">national code</th>
+        <th scope="col">birthday</th>
+        <th scope="col">email</th>
+        <th scope="col">phone number</th>
         <th scope="col">operations</th>
     </tr>
     </thead>
     <tbody>
     @foreach($items as $item)
         <tr>
-            <td>{{Auth::user()->first_name}}</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td{{$item->national_code}}</td>
-        </tr>
+            <td>{{$item->first_name}}</td>
+            <td>{{$item->last_name}}</td>
+            <td>{{$item->national_code}}</td>
+            <td>{{$item->birthday}}</td>
+            <td>{{$item->email}}</td>
+            <td>{{$item->mobile_number}}</td>
+            <td>
+                <a href="">edit</a>
+                <a href="">delete</a>
+            </td>
+
     @endforeach
     </tbody>
 </table>
