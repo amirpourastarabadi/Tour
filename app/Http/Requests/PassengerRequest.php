@@ -16,7 +16,7 @@ class PassengerRequest extends FormRequest
         return [
             'first_name' => 'required|max:255',
             'last_name'=> 'required|max:255',
-            'national_code'=> 'required|string|size:10',
+            'national_code'=> 'required|unique:passengers|string|size:10',
             'birthday'=> 'required|date',
             'email'=> 'required|email|unique:passengers',
             'mobile_number'=> 'required|unique:passengers',

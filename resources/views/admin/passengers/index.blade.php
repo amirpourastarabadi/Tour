@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -27,85 +26,51 @@
                                     <th scope="col">operations</th>
                                     </thead>
                                     <tbody>
-                                        @foreach($items as $item)
-                                            <tr>
-                                                <td>{{$item->first_name}}</td>
-                                                <td>{{$item->last_name}}</td>
-                                                <td>{{$item->national_code}}</td>
-                                                <td>{{$item->birthday}}</td>
-                                                <td>{{$item->email}}</td>
-                                                <td>{{$item->mobile_number}}</td>
-                                                <td>
-                                                    <div class="row">
-                                                        <a class="btn btn-sm" href="{{ route('admin.passengers.edit', $item) }}">Edit</a>
-                                                        <form action="{{route('admin.passengers.destroy', $item)}}" method="post">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button class=" btn btn-sm" type="submit" value="delete">Delete</button>
-                                                        </form>
-                                                    </div>
+                                    @foreach($items as $item)
+                                        <tr>
+                                            <td>{{$item->first_name}}</td>
+                                            <td>{{$item->last_name}}</td>
+                                            <td>{{$item->national_code}}</td>
+                                            <td>{{$item->birthday}}</td>
+                                            <td>{{$item->email}}</td>
+                                            <td>{{$item->mobile_number}}</td>
+                                            <td>
+                                                <div class="row">
+                                                    <a class="btn btn-sm btn-primary"
+                                                       href="{{ route('admin.passengers.edit', $item) }}">Edit</a>
+                                                    <form action="{{route('admin.passengers.destroy', $item)}}"
+                                                          method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button id="delete" class=" btn btn-sm btn-primary"
+                                                                type="submit"
+                                                                value="delete">Delete
+                                                        </button>
+                                                    </form>
+                                                </div>
 
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                                 {{ $items->links('pagination::bootstrap-4') }}
-
                             </div>
                         </div>
                     </div>
                 </div>
 
-@endsection
+                @endsection
 
+                @push('js')
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-{{--<!doctype html>--}}
-{{--<html lang="en">--}}
-{{--<head>--}}
-{{--    <meta charset="UTF-8">--}}
-{{--    <meta name="viewport"--}}
-{{--          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">--}}
-{{--    <meta http-equiv="X-UA-Compatible" content="ie=edge">--}}
-{{--    <title>Document</title>--}}
-{{--</head>--}}
-{{--<body>--}}
-
-{{--<a href="{{route('admin.passengers.create')}}"><h3>create new passenger</h3></a>--}}
-
-{{--<table class="table">--}}
-{{--    <thead class="thead-dark">--}}
-{{--    <tr>--}}
-{{--        <th scope="col">first name</th>--}}
-{{--        <th scope="col">last name</th>--}}
-{{--        <th scope="col">national code</th>--}}
-{{--        <th scope="col">birthday</th>--}}
-{{--        <th scope="col">email</th>--}}
-{{--        <th scope="col">phone number</th>--}}
-{{--        <th scope="col">operations</th>--}}
-{{--    </tr>--}}
-{{--    </thead>--}}
-{{--    <tbody>--}}
-{{--    @foreach($items as $item)--}}
-{{--        <tr>--}}
-{{--            <td>{{$item->first_name}}</td>--}}
-{{--            <td>{{$item->last_name}}</td>--}}
-{{--            <td>{{$item->national_code}}</td>--}}
-{{--            <td>{{$item->birthday}}</td>--}}
-{{--            <td>{{$item->email}}</td>--}}
-{{--            <td>{{$item->mobile_number}}</td>--}}
-{{--            <td>--}}
-{{--                <a href="{{ route('admin.passengers.edit', $item) }}">edit</a>--}}
-{{--                <form action="{{route('admin.passengers.destroy', $item)}}" method="post">--}}
-{{--                    @csrf--}}
-{{--                    @method('DELETE')--}}
-{{--                    <input type="submit" value="delete">--}}
-{{--                </form>--}}
-{{--            </td>--}}
-{{--        </tr>--}}
-{{--    @endforeach--}}
-{{--    </tbody>--}}
-{{--</table>--}}
-{{--{{ $items->links() }}--}}
-{{--</body>--}}
-{{--</html>--}}
+                    <script type="text/javascript">
+                        $('#delete').click(function (e) {
+                            var result = confirm("Are you sure you want to delete this user?");
+                            if (!result) {
+                                e.preventDefault();
+                            }
+                        });
+                    </script>
+    @endpush

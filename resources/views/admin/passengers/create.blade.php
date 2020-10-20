@@ -1,34 +1,96 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.admin_panel')
 
-<form action="{{route('admin.passengers.store')}}" method="post">
-    @csrf
-    first name <input type="text" name="first_name" value="amir"> <br>
-    @error('first_name') <span>{{$message}}</span>@enderror<br>
-    last name <input type="text" name="last_name" value="amiri"><br>
-    @error('last_name') <span>{{$message}}</span>@enderror<br>
-    national code <input type="text" name="national_code" value="0312564789"><br>
-    @error('national_code') <span>{{$message}}</span>@enderror<br>
-    birthday <input type="date" name="birthday" value="1989-01-03"><br>
-    @error('birthday') <span>{{$message}}</span>@enderror<br>
-    email <input type="email" name="email" value="ab@gmail.com"><br>
-    @error('email') <span>{{$message}}</span>@enderror<br>
-    phone number <input type="text" name="mobile_number" value="0235647890"><br>
-    @error('mobile_number') <span>{{$message}}</span>@enderror<br>
-    password <input type="password" name="password"><br>
-    @error('password') <span>{{$message}}</span>@enderror<br>
-    confirm password <input type="password" name="confirm_password"><br>
-    @error('confirm_password') <span>{{$message}}</span>@enderror<br>
-    <input type="submit" value="save">
-</form>
+@section('content')
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title">Create Passenger</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{route('admin.passengers.store')}}" method="post">
+                                @csrf
 
-</body>
-</html>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">First Name</label>
+                                            <input type="text" class="form-control" name="first_name"
+                                                   value="{{old("first_name")}}">
+                                            @error('first_name') <span class="text-danger">{{$message}}</span>@enderror<br>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Lase Name</label>
+                                            <input type="text" class="form-control" name="last_name"
+                                                   value="{{old("last_name")}}">
+                                            @error('last_name') <span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">National Code</label>
+                                            <input type="text" class="form-control" name="national_code"
+                                                   value="{{old("national_code")}}">
+                                            @error('national_code') <span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Birthday</label>
+                                            <input type="date" class="form-control" name="birthday"
+                                                   value="{{old('birthday')}}">
+                                            @error('birthday') <span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Email</label>
+                                            <input type="text" class="form-control" name="email"
+                                                   value="{{old('email')}}">
+                                            @error('email') <span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Phone Number</label>
+                                            <input type="text" class="form-control" name="mobile_number"
+                                                   value="{{old('mobile_number')}}">
+                                            @error('mobile_number') <span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Password</label>
+                                            <input type="password" class="form-control" name="password">
+                                            @error('password') <span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Confirm Password</label>
+                                            <input type="password" class="form-control" name="confirm_password">
+                                            @error('confirm_password') <span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary pull-right">Create</button>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+@endsection
+
+
+

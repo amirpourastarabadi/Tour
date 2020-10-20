@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PassengerRequest;
+use App\Http\Requests\PassengerUpdateRequest;
 use App\Models\Passenger;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class PassengerController extends Controller
 
     public function index()
     {
-        $items = Passenger::latest()->paginate(5);
+        $items = Passenger::latest()->paginate(10);
         return view('admin.passengers.index')->withItems($items);
     }
 
@@ -25,6 +26,7 @@ class PassengerController extends Controller
 
     public function store(PassengerRequest $request)
     {
+
         Passenger::create($request->all());
         return redirect(route('admin.passengers.index'));
     }
