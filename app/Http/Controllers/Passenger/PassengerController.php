@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Customer;
+namespace App\Http\Controllers\Passenger;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CustomerController extends Controller
+class PassengerController extends Controller
 {
 
     public function index()
     {
-        return 'customer panel';
+        return 'passenger panel';
     }
 
 
