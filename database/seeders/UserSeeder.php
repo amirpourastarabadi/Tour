@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
             'first_name' => 'super_admin',
             'last_name' => 'super_admin',
             'mobile_number'=> '1111',
-            'role' => 'super_admin',
+            'role' => 'superAdmin',
             'password' => Hash::make('123456'),
         ]);
         User::create([
@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
             'first_name' => 'tour_admin',
             'last_name' => 'tour_admin',
             'mobile_number'=> '3333',
-            'role' => 'tour_admin',
+            'role' => 'tourAdmin',
             'password' => Hash::make('123456'),
         ]);
         User::create([
