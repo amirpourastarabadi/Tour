@@ -10,7 +10,7 @@ class SuperAdminController extends Controller
 
     public function index()
     {
-        return 'super adin';
+        return 'super admin';
     }
 
 
