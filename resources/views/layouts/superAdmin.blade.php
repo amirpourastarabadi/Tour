@@ -26,44 +26,44 @@
         Tip 2: you can also add an image using data-image tag
     -->
         <div class="logo">
-            <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-                CT
-            </a>
-            <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-                Creative Tim
+            <a href="{{ route('profile.index') }}" class="simple-text logo-normal">
+                {{ __('superAdmin.layout.sidebar_title') }}
             </a>
         </div>
-        {{--    <main class="py-5">--}}
-        {{--        <div class="container d-flex">--}}
-        {{--            <div class="col-3">--}}
-        {{--                <div class="text-center"><h3></h3></div>--}}
-        {{--                <hr>--}}
-
-        {{--                <div class="text-center">--}}
-        {{--                    <a href="" class="text-dark text-decoration-none">لیست ادمین ها</a>--}}
-        {{--                </div>--}}
-
-        {{--                <div class="text-center">--}}
-        {{--                    <a href="" class="text-dark text-decoration-none">اضافه کردن ادمین</a>--}}
-        {{--                </div>--}}
-
-        {{--                <div class="text-center">--}}
-        {{--                    <a href="" class="text-dark text-decoration-none">ویرایش اطلاعات</a>--}}
-        {{--                </div>--}}
-
-        {{--                <div class="text-center">--}}
-        {{--                    <a href="" class="text-dark text-decoration-none">خروج</a>--}}
-        {{--                </div>--}}
-        {{--            </div>--}}
-
-
         <div class="sidebar-wrapper">
             <ul class="nav">
-                <li class="nav-item active  ">
-                    <a class="nav-link" href="#">
-                        <i class="material-icons">dashboard</i>
-                        <p>Passengers</p>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ route('superAdmin.index') }}">
+                        <i class="material-icons">list</i>
+                        <p>{{ __('superAdmin.layout.admins_list') }}</p>
                     </a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ route('superAdmin.create') }}">
+                        <i class="material-icons">person_add</i>
+                        <p>{{ __('superAdmin.layout.add') }}</p>
+                    </a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ route('superAdmin.edit.profile', auth()->user()) }}">
+                        <i class="material-icons">edit</i>
+                        <p>{{ __('superAdmin.layout.edit') }}</p>
+                    </a>
+                </li>
+
+                <li class="nav-item active">
+
+                    {{--#TODO fix this button--}}
+                    <form action="{{ route('logout') }}">
+                        @csrf
+                        @method('post')
+                    <a class="nav-link" href="">
+                        <i class="material-icons">exit_to_app</i>
+                        <p>{{ __('superAdmin.layout.logout') }}</p>
+                    </a>
+                    </form>
                 </li>
                 <!-- your sidebar here -->
             </ul>
@@ -74,7 +74,7 @@
         <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
             <div class="container-fluid">
                 <div class="navbar-wrapper">
-                    <a class="navbar-brand" href="#">Super Admin Dashboard</a>
+                    <a class="navbar-brand" href="{{ route('superAdmin.index') }}">{{ __('superAdmin.layout.nav_title') }}</a>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="sr-only">Toggle navigation</span>
@@ -84,11 +84,7 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:;">
-                                <i class="material-icons">notifications</i> Notifications
-                            </a>
-                        </li>
+
                         <!-- your navbar here -->
                     </ul>
                 </div>
@@ -106,6 +102,7 @@
                 <nav class="float-left">
                     <ul>
                         <li>
+                            {{--#TODO change href to homepage--}}
                             <a href="#">
                                 Tour
                             </a>

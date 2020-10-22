@@ -49,6 +49,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/checkRole/web.php'));
 
             Route::middleware('web')
+                ->prefix('superAdmin')
                 ->namespace($this->superAdminNamespace)
                 ->group(base_path('routes/superAdmin/web.php'));
 
