@@ -51,6 +51,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->prefix('superAdmin')
                 ->namespace($this->superAdminNamespace)
+                ->name('superAdmin.')
                 ->group(base_path('routes/superAdmin/web.php'));
 
             Route::middleware('web')

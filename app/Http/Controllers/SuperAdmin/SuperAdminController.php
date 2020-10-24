@@ -6,60 +6,44 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class SuperAdminController extends Controller
 {
 
     public function index()
     {
-        //
+        $admins_count = User::where('role', 'admin')->count();
+        return view('superAdmin.profile.show')->withSuperAdmin(Auth()->user())->withAdminsCount($admins_count);
     }
 
 
-    public function create()
+    public function edit(User $profile)
     {
-        return 'create';
+        return view('superAdmin.profile.edit')->withSuperAdmin($profile);
     }
 
 
-    public function store(Request $request)
+    public function update(Request $request, User $profile)
     {
-        //
+        $profile->update($request->all());
+        return redirect()->route('superAdmin.profile.index')->withResult([
+            'message' => __('superAdmin.alerts.admin.update_superAdmin', ['first_name' => $profile->first_name, 'last_name' => $profile->last_name]),
+            'alert'   => 'success',
+        ]);
     }
 
 
-    public function show(User $user)
+    public function keyGenerate(User $profile)
     {
-        return 'show';
-    }
+        $pass = Str::random(10);
+        $profile->password = Hash::make($pass);
+        $profile->save();
 
-
-    public function edit(User $user)
-    {
-        dd($user);
-    }
-
-
-    public function update(Request $request, User $user)
-    {
-        return 'update';
-    }
-
-
-    public function destroy(User $user)
-    {
-        dd($user);
-        return redirect()->route('superAdmin.index');
-    }
-
-
-    public function editProfile(User $user)
-    {
-        return 'edit profile';
-    }
-
-    public function keyGenerate(User $user)
-    {
-        return 'keyGenerate';
+        return redirect()->back()->withResult([
+            'message' => __('superAdmin.alerts.admin.reset_password', ['password' => $pass]),
+            'alert'   => 'primary',
+        ]);
     }
 }
