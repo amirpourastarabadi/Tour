@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateUsersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
@@ -18,19 +13,15 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('mobile_number', '14')->unique();
-            $table->timestamp('mobile_number_verified_at')->nullable();
             $table->enum('role', ['superAdmin', 'admin', 'tourAdmin', 'customer']);
             $table->string('password');
+            $table->timestamp('mobile_number_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
     public function down()
     {
         Schema::dropIfExists('users');
