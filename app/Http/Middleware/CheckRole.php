@@ -11,10 +11,9 @@ class CheckRole
 
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role != $request->path()) {
+        if (Auth::user()->role != explode('/',$request->path())[0]) {
             abort(403);
         }
-
         return $next($request);
     }
 }
