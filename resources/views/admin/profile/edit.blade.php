@@ -1,4 +1,4 @@
-@extends('layouts.superAdmin')
+@extends('layouts.admin')
 
 @section('content')
 
@@ -12,44 +12,44 @@
         </div>
     @endif
 
-    <h3>{{ __('superAdmin.layout.edit') }} | <span class="text-primary">{{ $superAdmin->first_name }} {{ $superAdmin->last_name }}</span></h3>
+    <h3>{{ __('Admin.layout.edit') }}</h3>
     <br/>
-    <form action="{{ route('superAdmin.profile.update', $superAdmin) }}" method="POST">
+    <form action="{{ route('admin.profile.update', $user) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-row">
             <div class="form-group bmd-form-group col-md-6">
-                <label>{{ __('superAdmin.list.first_name') }}</label>
-                <input name="first_name" value="{{ $superAdmin->first_name }}" type="text" class="form-control" placeholder="{{ __('superAdmin.list.first_name') }}">
+                <label>{{ __('Admin.list.first_name') }}</label>
+                <input name="first_name" value="{{ $user->first_name }}" type="text" class="form-control">
             </div>
 
             <div class="form-group col-md-6">
-                <label>{{ __('superAdmin.list.last_name') }}</label>
-                <input name="last_name" value="{{ $superAdmin->last_name }}" type="text" class="form-control" placeholder="{{ __('superAdmin.list.last_name') }}">
+                <label>{{ __('Admin.list.last_name') }}</label>
+                <input name="last_name" value="{{ $user->last_name }}" type="text" class="form-control">
             </div>
         </div>
         <br/>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label>{{ __('superAdmin.list.mobile_number') }}</label>
-                <input  name="mobile_number" value="{{ $superAdmin->mobile_number }}" type="text" class="form-control" placeholder="{{ __('superAdmin.list.mobile_number') }}">
+                <label>{{ __('Admin.list.mobile_number') }}</label>
+                <input  name="mobile_number" value="{{ $user->mobile_number }}" type="text" class="form-control">
             </div>
         </div>
         <br/>
 
         <button type="submit" class="btn btn-success"
-                onclick="return confirm('{{ __('superAdmin.alerts.admin.confirm_edit', ['first_name' => $superAdmin->first_name, 'last_name' => $superAdmin->last_name]) }}');">
-            {{ __('superAdmin.edit.submit') }}
+                onclick="return confirm('{{ __('Admin.alerts.admin.confirm_edit', ['first_name' => $user->first_name, 'last_name' => $user->last_name]) }}');">
+            {{ __('Admin.edit.submit') }}
         </button>
 
-        <a href="{{ route('superAdmin.profile.keyGenerate', $superAdmin) }}" type="submit" class="btn btn-primary text-light"
-           onclick="return confirm('{{ __('superAdmin.alerts.admin.confirm_key', ['first_name' => $superAdmin->first_name, 'last_name' => $superAdmin->last_name]) }}');">
-            {{ __('superAdmin.list.key') }}
+        <a href="{{ route('admin.profile.keyGenerate', $user) }}" class="btn btn-primary text-light"
+           onclick="return confirm('{{ __('superAdmin.alerts.admin.confirm_key', ['first_name' => $user->first_name, 'last_name' => $user->last_name]) }}');">
+            {{ __('Admin.list.key') }}
         </a>
 
-        <a href="{{ route('superAdmin.profile.index') }}" type="submit" class="btn btn-danger text-light"
-           onclick="return confirm('{{ __('superAdmin.alerts.admin.cancel_edit') }}');">
-            {{ __('superAdmin.list.cancel') }}
+        <a href="{{ route('admin.profile.index') }}" type="submit" class="btn btn-danger text-light"
+           onclick="return confirm('{{ __('Admin.alerts.admin.cancel_edit') }}');">
+            {{ __('Admin.list.cancel') }}
         </a>
 
     </form>
