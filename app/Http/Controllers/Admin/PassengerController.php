@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PassengerRequest;
-use App\Http\Requests\PassengerUpdateRequest;
 use App\Models\Passenger;
 use Illuminate\Http\Request;
 
@@ -56,5 +55,10 @@ class PassengerController extends Controller
         $passenger->delete();
         return redirect(route('admin.passengers.index'));
 
+    }
+
+
+    public function keyGenerate(){
+        //
     }
 }

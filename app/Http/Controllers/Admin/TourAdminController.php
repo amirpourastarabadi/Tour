@@ -3,18 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Passenger;
-use App\Models\TourAdmin;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class TourAdminController extends Controller
 {
 
     public function index()
     {
-        $passengers = Passenger::all();
-        $tour_admins = TourAdmin::all();
-        return view('admin.dashboard', compact('passengers', 'tour_admins'));
+        //
     }
 
 
@@ -52,6 +48,7 @@ class AdminController extends Controller
     {
         //
     }
+
 
     public function keyGenerate(){
         //
