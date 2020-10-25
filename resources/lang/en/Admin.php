@@ -43,7 +43,14 @@ return [
         ],
         'passenger' => [
             'create' => 'Passenger <strong>:first_name</strong> <strong>:last_name</strong> Created successfully. <br/> Password is <strong>:password</strong>',
+            'delete' => 'Passenger <strong>:first_name</strong> <strong>:last_name</strong> removed successfully.',
             'update' => 'Passenger <strong>:first_name</strong> <strong>:last_name</strong> updated successfully.',
+        ],
+        'tourAdmin' => [
+            'update' => 'Tour Admin <strong>:first_name</strong> <strong>:last_name</strong> updated successfully.',
+            'create' => 'Tour Admin <strong>:first_name</strong> <strong>:last_name</strong> Created successfully. <br/> Password is <strong>:password</strong>',
+            'delete' => 'Tour Admin <strong>:first_name</strong> <strong>:last_name</strong> removed successfully.',
+
         ]
     ]
 

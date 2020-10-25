@@ -20,7 +20,6 @@ class User extends Authenticatable
 
 
     protected $hidden = [
-        'password',
         'remember_token',
     ];
 
@@ -31,5 +30,9 @@ class User extends Authenticatable
 
     public function passenger(){
         return $this->hasOne(Passenger::class);
+    }
+
+    public function tourAdmin(){
+        return $this->hasOne(TourAdmin::class);
     }
 }

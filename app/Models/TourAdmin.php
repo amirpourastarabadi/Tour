@@ -17,4 +17,10 @@ class TourAdmin extends Model
         'email',
         'telephone_number',
     ];
+
+    public $timestamps = false;
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

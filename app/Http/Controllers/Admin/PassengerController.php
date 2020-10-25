@@ -31,7 +31,6 @@ class PassengerController extends Controller
         $pass = Str::random(10);
         $request['password'] = Hash::make($pass);
         $request['role'] = 'customer';
-
         $user = User::create($request->all());
         $user->passenger()->create($request->all());
 
@@ -65,10 +64,12 @@ class PassengerController extends Controller
 
     public function destroy(Passenger $passenger)
     {
-        $passenger->user()->delete();
+        $passenger->user->delete();
         $passenger->delete();
-        return redirect(route('admin.passengers.index'));
-
+        return redirect()->back()->withResult([
+            'message' => __('Admin.alerts.tourAdmin.delete', ['first_name' => $passenger->user->first_name, 'last_name' => $passenger->user->last_name]),
+            'alert'   => 'danger',
+        ]);
     }
 
 
@@ -76,7 +77,7 @@ class PassengerController extends Controller
         $pass = Str::random(10);
         $passenter = Passenger::findOrFail($id);
         $passenter->user->password = Hash::make($pass);
-        $passenter->save();
+        $passenter->user->save();
         return redirect()->back()->withResult([
             'message' => __('Admin.alerts.admin.reset_password', ['password' => $pass]),
             'alert'   => 'primary',
