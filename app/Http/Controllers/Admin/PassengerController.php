@@ -26,7 +26,7 @@ class PassengerController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(PassengerRequest $request)
     {
         $pass = Str::random(10);
         $request['password'] = Hash::make($pass);
@@ -46,12 +46,6 @@ class PassengerController extends Controller
     }
 
 
-    public function show($passenger)
-    {
-        dd($passenger);
-    }
-
-
     public function edit(Passenger $passenger)
     {
         return view('admin.passengers.edit')->withPassenger($passenger);
@@ -60,8 +54,12 @@ class PassengerController extends Controller
 
     public function update(Request $request, Passenger $passenger)
     {
+        $passenger->user()->update($request->only(['first_name', 'last_name', 'mobile_number' ]));
         $passenger->update($request->all());
-        return redirect(route('admin.passengers.index'));
+        return redirect()->route('admin.passengers.index')->withResult([
+            'message' => __('Admin.alerts.passenger.update', ['first_name' => $passenger->user->first_name, 'last_name' => $passenger->user->last_name]),
+            'alert'   => 'success',
+        ]);
     }
 
 
