@@ -13,8 +13,8 @@ class PassengerFactory extends Factory
     {
         return [
             'email' => $this->faker->email,
-            'telephone_number' => $this->faker->unique()->phoneNumber,
-            'national_code' => $this->faker->unique()->randomNumber(10),
+            'telephone_number' => $this->faker->unique()->randomNumber(8),
+            'national_code' => $this->faker->unique()->randomNumber(8),
             'birthday' => $this->faker->date(),
         ];
     }

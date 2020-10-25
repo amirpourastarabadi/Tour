@@ -15,7 +15,7 @@ class PassengerController extends Controller
 
     public function index()
     {
-        $items = Passenger::paginate(10);
+        $items = Passenger::latest('id')->paginate(10);
         return view('admin.passengers.index')->withItems($items);
     }
 

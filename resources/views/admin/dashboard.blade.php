@@ -13,8 +13,8 @@
                 </div>
                 <div class="card-body">
                     <h3>You can manage</h3>
-                    <h5>{{count($passengers)}} Passengers and</h5>
-                    <h5>{{count($tour_admins)}} Tour agency</h5>
+                    <h5>{{$passengers}} Passengers and</h5>
+                    <h5>{{$tour_admins}} Tour agency</h5>
                     <h3>From this panel</h3>
                 </div>
             </div>

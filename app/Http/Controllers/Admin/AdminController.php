@@ -15,8 +15,8 @@ class AdminController extends Controller
 
     public function index()
     {
-        $passengers = Passenger::all();
-        $tour_admins = TourAdmin::all();
+        $passengers = Passenger::count();
+        $tour_admins = User::where('role' , 'tourAdmin')->count();
         return view('admin.dashboard', compact('passengers', 'tour_admins'));
     }
 

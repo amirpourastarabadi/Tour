@@ -16,7 +16,7 @@ class TourAdminController extends Controller
 
     public function index()
     {
-        $items = TourAdmin::paginate(10);
+        $items = TourAdmin::latest('id')->paginate(10);
         return view("admin.tourAdmin.index", compact('items'));
     }
 
