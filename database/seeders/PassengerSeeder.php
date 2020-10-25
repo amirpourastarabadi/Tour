@@ -16,14 +16,15 @@ class PassengerSeeder extends Seeder
         $faker = Factory::create();
         for ($i = 0; $i <= 20; $i++) {
             Passenger::create([
-                'first_name' => $faker->firstName,
-                'last_name' => $faker->lastName,
                 'national_code' => Str::random(10),
                 'birthday' => $faker->date(),
                 'email' => $faker->email,
-                'mobile_number' => '0912345678'. "$i",
-                'password' => Hash::make('111111')
+                'telephone_number' => '0912345678'. "$i",
+                'user_id' => rand(1,3)
             ]);
         }
     }
 }
+
+
+

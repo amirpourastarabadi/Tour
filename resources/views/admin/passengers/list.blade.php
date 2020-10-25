@@ -36,6 +36,14 @@
                         </button>
                     </form>
 
+                    <form action="{{ route('superAdmin.admin.keyGenerate', $admin) }}" method="GET">
+                        @csrf
+                        <button type="submit" rel="tooltip" class="btn btn-primary" title="{{ __('superAdmin.list.key') }}"
+                                onclick="return confirm('{{ __('superAdmin.alerts.admin.confirm_key', ['first_name' => $admin->first_name, 'last_name' => $admin->last_name]) }}');">
+                            <i class="material-icons">vpn_key</i>
+                        </button>
+                    </form>
+
                     <form action="{{ route('superAdmin.admin.edit', $admin) }}" method="GET">
                         @csrf
                         <button type="submit" rel="tooltip" class="btn btn-success" title="{{ __('superAdmin.list.edit') }}">

@@ -108,6 +108,13 @@ class UserSeeder extends Seeder
             'role' => 'customer',
             'password' => Hash::make('123456'),
         ]);
+        User::create([
+            'first_name' => 'customer2',
+            'last_name' => 'customer2',
+            'mobile_number'=> '123456789',
+            'role' => 'customer',
+            'password' => Hash::make('123456'),
+        ]);
 
     }
 }

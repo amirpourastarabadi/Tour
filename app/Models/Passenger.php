@@ -16,4 +16,10 @@ class Passenger extends Model
         'national_code',
         'birthday'
     ];
+
+    public $timestamps = false;
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

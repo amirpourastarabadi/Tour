@@ -42,7 +42,6 @@
                                     </div>
                                     <div class="col-md-5">
                                         <div class="form-group">
-                                            <label class="bmd-label-floating">Birthday</label>
                                             <input type="date" class="form-control" name="birthday"
                                                    value="{{old('birthday')}}">
                                             @error('birthday') <span class="text-danger">{{$message}}</span>@enderror
@@ -64,6 +63,17 @@
                                             <input type="text" class="form-control" name="mobile_number"
                                                    value="{{old('mobile_number')}}">
                                             @error('mobile_number') <span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Telephone Number</label>
+                                            <input type="text" class="form-control" name="telephone_number"
+                                                   value="{{old('telephone_number')}}">
+                                            @error('telephone_number') <span class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                     </div>
                                 </div>

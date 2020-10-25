@@ -14,12 +14,11 @@ return [
         'first_name'     => 'First Name',
         'last_name'      => 'Last Name',
         'mobile_number'  => 'Mobile Number',
-        'admins_count'  => 'Number of Admins',
         'actions'        => 'Actions',
         'info'           => 'show info',
         'key'            => 'Reset Password',
-        'edit'           => 'edit admin',
-        'delete'         => 'delete admin',
+        'edit'           => 'edit',
+        'delete'         => 'delete',
         'cancel'         => 'Cancel',
         'back'         => 'Back',
         'confirm_delete' => 'Are you sure you want to delete :first_name :last_name ?',
@@ -42,6 +41,9 @@ return [
             'cancel_create'     => 'Are you sure you want to cancel create admin?',
             'reset_password'    => 'New Password is <strong>:password</strong>',
         ],
+        'passenger' => [
+            'create' => 'Passenger <strong>:first_name</strong> <strong>:last_name</strong> Created successfully. <br/> Password is <strong>:password</strong>',
+        ]
     ]
 
 ];

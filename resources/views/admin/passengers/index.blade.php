@@ -28,26 +28,41 @@
                                     <tbody>
                                     @foreach($items as $item)
                                         <tr>
-                                            <td>{{$item->first_name}}</td>
-                                            <td>{{$item->last_name}}</td>
+                                            <td>{{$item->user->first_name}}</td>
+                                            <td>{{$item->user->last_name}}</td>
                                             <td>{{$item->national_code}}</td>
                                             <td>{{$item->birthday}}</td>
                                             <td>{{$item->email}}</td>
-                                            <td>{{$item->mobile_number}}</td>
-                                            <td>
-                                                <div class="row">
-                                                    <a class="btn btn-sm btn-primary"
-                                                       href="{{ route('admin.passengers.edit', $item) }}">Edit</a>
-                                                    <form action="{{route('admin.passengers.destroy', $item)}}"
-                                                          method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button id="delete" class=" btn btn-sm btn-primary"
-                                                                type="submit"
-                                                                value="delete">Delete
-                                                        </button>
-                                                    </form>
-                                                </div>
+                                            <td>{{$item->user->mobile_number}}</td>
+                                            <td class="td-actions text-center d-flex justify-content-between">
+                                                <form action="{{ route('admin.passengers.keyGenerate', $item) }}"
+                                                      method="GET">
+                                                    <button type="submit" rel="tooltip" class="btn btn-primary"
+                                                            title="{{ __('Admin.list.key') }}"
+                                                            onclick="return confirm('{{ __('Admin.alerts.admin.confirm_key', ['first_name' => $item->user->first_name, 'last_name' => $item->user->last_name]) }}');">
+                                                        <i class="material-icons">vpn_key</i>
+                                                    </button>
+                                                </form>
+
+                                                <form action="{{ route('admin.passengers.edit', $item) }}" method="GET">
+                                                    @csrf
+                                                    <button type="submit" rel="tooltip" class="btn btn-success"
+                                                            title="{{ __('Admin.list.edit') }}">
+                                                        <i class="material-icons">edit</i>
+                                                    </button>
+                                                </form>
+
+                                                <form action="{{ route('admin.passengers.destroy', $item) }}"
+                                                      method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                            onclick="return confirm('{{ __('Admin.list.confirm_delete', ['first_name' => $item->user->first_name, 'last_name' => $item->user->last_name]) }}')"
+                                                            rel="tooltip" class="btn btn-danger"
+                                                            title="{{ __('Admin.list.delete') }}">
+                                                        <i class="material-icons">close</i>
+                                                    </button>
+                                                </form>
 
                                             </td>
                                         </tr>
