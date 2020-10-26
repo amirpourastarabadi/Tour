@@ -11,7 +11,7 @@ class CheckRoleController extends Controller
     {
         switch (Auth::user()->role) {
             case 'superAdmin':
-                return redirect()->route('superAdmin.index');
+                return redirect()->route('superAdmin.profile.index');
             case 'admin':
                 return redirect()->route('admin.index');
             case 'tourAdmin':

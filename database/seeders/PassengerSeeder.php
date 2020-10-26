@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Passenger;
+use App\Models\User;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -13,17 +14,12 @@ class PassengerSeeder extends Seeder
 
     public function run()
     {
-        $faker = Factory::create();
-        for ($i = 0; $i <= 20; $i++) {
-            Passenger::create([
-                'first_name' => $faker->firstName,
-                'last_name' => $faker->lastName,
-                'national_code' => Str::random(10),
-                'birthday' => $faker->date(),
-                'email' => $faker->email,
-                'mobile_number' => '0912345678'. "$i",
-                'password' => Hash::make('111111')
-            ]);
+        $users = User::where('role', 'customer')->get();
+        foreach ($users as $user){
+            $user->passenger()->create(Passenger::factory()->make()->toArray());
         }
     }
 }
+
+
+

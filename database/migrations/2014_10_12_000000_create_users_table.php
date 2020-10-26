@@ -12,7 +12,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('mobile_number', '14')->unique();
+            $table->string('mobile_number', '20')->unique();
             $table->enum('role', ['superAdmin', 'admin', 'tourAdmin', 'customer']);
             $table->string('password');
             $table->timestamp('mobile_number_verified_at')->nullable();
@@ -26,4 +26,6 @@ class CreateUsersTable extends Migration
     {
         Schema::dropIfExists('users');
     }
+
+
 }

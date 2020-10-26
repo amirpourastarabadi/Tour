@@ -1,4 +1,4 @@
-@extends('layouts.admin_panel')
+@extends('layouts.admin')
 
 @section('content')
     <div class="content">
@@ -18,7 +18,7 @@
                                         <div class="form-group">
                                             <label class="bmd-label-floating">First Name</label>
                                             <input type="text" class="form-control" name="first_name"
-                                                   value="{{$passenger->first_name}}">
+                                                   value="{{$passenger->user->first_name}}">
                                             @error('first_name') <span class="text-danger">{{$message}}</span>@enderror<br>
                                         </div>
                                     </div>
@@ -26,7 +26,7 @@
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Lase Name</label>
                                             <input type="text" class="form-control" name="last_name"
-                                                   value="{{$passenger->last_name}}">
+                                                   value="{{$passenger->user->last_name}}">
                                             @error('last_name') <span class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -62,8 +62,18 @@
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Phone Number</label>
                                             <input type="text" class="form-control" name="mobile_number"
-                                                   value="{{$passenger->mobile_number}}">
+                                                   value="{{$passenger->user->mobile_number}}">
                                             @error('mobile_number') <span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Telephone Number</label>
+                                            <input type="text" class="form-control" name="telephone_number"
+                                                   value="{{$passenger->telephone_number}}">
+                                            @error('telephone_number') <span class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                     </div>
                                 </div>

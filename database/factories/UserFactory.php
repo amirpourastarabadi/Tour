@@ -8,26 +8,19 @@ use Illuminate\Support\Str;
 
 class UserFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
+
     protected $model = User::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
+
     public function definition()
     {
+        $roles = ['admin', 'tourAdmin', 'customer'];
         return [
-            'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
-            'email_verified_at' => now(),
+            'first_name' => $this->faker->firstName,
+            'last_name' => $this->faker->lastName,
+            'mobile_number' => $this->faker->randomNumber(8),
+            'role' => $roles[array_rand( $roles)],
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
         ];
     }
 }
