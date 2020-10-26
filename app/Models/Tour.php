@@ -21,4 +21,9 @@ class Tour extends Model
         'personal_certificates',
         'marriage_certificates',
     ];
+
+
+    public function passengers(){
+        return $this->belongsToMany(Passenger::class);
+    }
 }
