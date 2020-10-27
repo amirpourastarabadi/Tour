@@ -17,6 +17,10 @@
     <link href="{{ asset('assets/css/material-dashboard.css?v=2.1.2') }}" rel="stylesheet" />
     <script>{{ asset('assets/js/core/bootstrap-material-design.min.js') }}</script>
     <script>{{ asset('assets/js/core/jquery.min.js') }}</script>
+
+    <link href="https://demos.creative-tim.com/test/material-dashboard-pro/assets/css/material-dashboard.min.css?v=2.0.3" rel="stylesheet">
+
+    @stack('css')
 </head>
 <body>
 
@@ -45,19 +49,17 @@
                             </a>
                         </form>
                     @else
-                        <form class="form-inline ml-auto" action="{{ route('register') }}" method="POST">
-                            @csrf
-                            <a href="{{ route('login') }}" class="nav-link d-inline-flex">
+                        <div class="form-inline ml-auto">
+                            <a  type="button" class="nav-link d-inline-flex" style="cursor: pointer" data-toggle="modal" data-target="#loginModal">
                                 <i class="material-icons">login</i>
                                 <p>{{ __('navbar.login') }}</p>
                             </a>
 
-                            {{--#TODO create register--}}
-                            <a href="#" class="nav-link d-inline-flex" onclick="this.parentNode.submit();">
+                            <a type="button" class="nav-link d-inline-flex" style="cursor: pointer" data-toggle="modal" data-target="#registerModal">
                                 <i class="material-icons">person_add</i>
                                 <p>{{ __('navbar.register') }}</p>
                             </a>
-                        </form>
+                        </div>
                     @endif
                 </li>
             </ul>
@@ -75,6 +77,67 @@
     </div>
 </nav>
 
+<!--Login modal-->
+<div class="modal fade" id="loginModal" tabindex="-1">
+    <div class="modal-dialog modal-login" role="document">
+        <div class="modal-content">
+            <div class="card card-signup card-plain">
+                <div class="modal-header">
+                    <div class="card-header card-header-primary text-center">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="material-icons">clear</i>
+                        </button>
+                        <h4 class="card-title">{{ __('navbar.login') }}</h4>
+                        <br>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('login') }}" class="form" method="POST">
+                        @csrf
+                        <p class="description text-center">{{ __('navbar.description') }}</p>
+                        <div class="card-body">
+                            <div class="form-group bmd-form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="material-icons">call</i></div>
+                                    </div>
+                                    <input name="mobile_number" type="text" class="form-control" placeholder="{{ __('navbar.mobile') }}">
+
+                                    @error('mobile_number')
+                                        <span class="container text-danger text-small" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
+                                </div>
+                            </div>
+
+                            <div class="form-group bmd-form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="material-icons">lock_outline</i></div>
+                                    </div>
+                                    <input name="password" type="password" placeholder="{{ __('navbar.password') }}" class="form-control">
+
+                                    @error('password')
+                                        <span class="container text-danger text-small" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="container text-center ml-2 btn btn-primary btn-link btn-wd btn-lg">
+                            {{ __('navbar.login') }}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @yield('main_content')
 <!--   Core JS Files   -->
 <script src="{{asset('assets/js/core/jquery.min.js')}}" type="text/javascript"></script>
@@ -83,6 +146,12 @@
 
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="{{asset('assets/js/material-dashboard.min.js?v=2.1.2')}}" type="text/javascript"></script>
+
+<script type="text/javascript">
+    @if ($errors->any())
+        $('#loginModal').modal('show');
+    @endif
+</script>
 
 @stack('js')
 </body>
