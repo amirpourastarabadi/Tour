@@ -68,7 +68,7 @@
 
                 {{--#TODO create search process--}}
                 <button type="submit" class="btn btn-neutral btn-icon btn-round">
-                    <i class="material-icons">{{ __('navbar.search') }}</i>
+                    <i class="material-icons">search</i>
                 </button>
             </form>
         </div>
