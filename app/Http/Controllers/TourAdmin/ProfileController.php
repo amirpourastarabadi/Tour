@@ -15,7 +15,7 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return  view('tourAdmin.profile.show', compact('user'));
+        return view('tourAdmin.profile.show', compact('user'));
     }
 
     public function edit($id)
@@ -34,17 +34,16 @@ class ProfileController extends Controller
 
     public function destroy($id)
     {
-        $user = User::find($id);
-        $user->delete();
-        redirect(url('/'));
     }
-    public function restPassword(){
+
+    public function restPassword()
+    {
         $pass = Str::random(10);
         Auth::user()->password = Hash::make($pass);
         Auth::user()->save();
         return redirect()->back()->withResult([
             'message' => __('superAdmin.alerts.admin.reset_password', ['password' => $pass]),
-            'alert'   => 'primary',
+            'alert' => 'primary',
         ]);
     }
 }

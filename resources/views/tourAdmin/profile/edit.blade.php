@@ -37,7 +37,7 @@
             <br>
             <div class="form-group col-md-6">
                 <label>Guild Code</label>
-                <input  name="guild_code" value="{{ $user->tourAdmin->guild_code }}" type="text" class="form-control">
+                <input name="guild_code" value="{{ $user->tourAdmin->guild_code }}" type="text" class="form-control">
             </div>
         </div>
         <br/>
@@ -49,14 +49,15 @@
             <br>
             <div class="form-group col-md-6">
                 <label>E-Mail Address</label>
-                <input  name="email" value="{{ $user->tourAdmin->email }}" type="text" class="form-control">
+                <input name="email" value="{{ $user->tourAdmin->email }}" type="text" class="form-control">
             </div>
         </div>
         <br/>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label>Telephone Number</label>
-                <input  name="telephone_number" value="{{ $user->tourAdmin->telephone_number }}" type="text" class="form-control">
+                <input name="telephone_number" value="{{ $user->tourAdmin->telephone_number }}" type="text"
+                       class="form-control">
             </div>
         </div>
         <button type="submit" class="btn btn-success"
@@ -74,11 +75,6 @@
             Cancel
         </a>
 
-        <form action="{{route('tourAdmin.profile.destroy', $user)}}" method="post">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger" onclick="return confirm('This account will not be accessible after clicking ok')">DELETE ACCOUNT</button>
-        </form>
 
     </form>
 @endsection
