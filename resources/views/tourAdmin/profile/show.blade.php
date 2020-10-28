@@ -7,10 +7,11 @@
             <div class="card">
                 <div class="card-header card-header-text card-header-primary">
                     <div class="card-text">
-                        <h3 class="card-title">{{ $user->tourAdmin->agency }} Agency</h3>
+                        <h3 class="card-title">{{ $user->tourAdmin->agency }} {{__('tourAdmin.profile.agency')}}</h3>
                     </div>
                 </div>
                 <div class="card-body">
+
                     Manager: <span class="text-success"
                                    style="font-size: large"><b>{{ $user->first_name }}, {{$user->last_name}}</b></span>
                     <br/><br/>
@@ -18,13 +19,13 @@
                                    style="font-size: large"><b>{{ $user->tourAdmin->start_at }}</b></span>
                     <br/><br/>
                     Phone Number: <span class="text-success"
-                                                                style="font-size: large"><b>{{ $user->tourAdmin->telephone_number }}</b></span>
+                                        style="font-size: large"><b>{{ $user->tourAdmin->telephone_number }}</b></span>
                     <br/><br/>
                     E-Mail Address: <span class="text-success"
-                                        style="font-size: large"><b>{{ $user->tourAdmin->email }}</b></span>
+                                          style="font-size: large"><b>{{ $user->tourAdmin->email }}</b></span>
                     <br/><br/>
                     Guild Code: <span class="text-success"
-                                        style="font-size: large"><b>{{ $user->tourAdmin->guild_code }}</b></span>
+                                      style="font-size: large"><b>{{ $user->tourAdmin->guild_code }}</b></span>
                     <br/><br/>
 
                 </div>

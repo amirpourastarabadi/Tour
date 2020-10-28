@@ -8,11 +8,10 @@
                 <div class="card-header card-header-text card-header-primary">
                     <div class="card-text">
                         <h3 class="card-title">
-                            Hello {{\Illuminate\Support\Facades\Auth::user()->first_name}} {{\Illuminate\Support\Facades\Auth::user()->last_name}}</h3>
+                            {{__('tourAdmin.layout.hi')}} {{Auth::user()->first_name}} {{Auth::user()->last_name}}</h3>
                     </div>
                 </div>
                 <div class="card-body">
-
                 </div>
             </div>
         </div>
