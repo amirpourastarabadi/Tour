@@ -152,13 +152,13 @@
                         <br>
                         <ul class="container justify-content-around nav nav-tabs md-tabs tabs-2">
                             <li class="nav-item">
-                                <a class="nav-link active d-inline-flex" id="passenger" data-toggle="tab" href="#passenger">
+                                <a class="nav-link active d-inline-flex" id="passenger" data-toggle="tab" href="#passengerTab">
                                     <i class="material-icons">card_travel</i>
                                     <p>{{ __('navbar.main.passenger') }}</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-inline-flex" id="tourAdmin" data-toggle="tab" href="#tourAdmin">
+                                <a class="nav-link d-inline-flex" id="tourAdmin" data-toggle="tab" href="#tourAdminTab">
                                     <i class="material-icons">support_agent</i>
                                     <p>{{ __('navbar.main.tour_admin') }}</p>
                                 </a>
@@ -170,7 +170,7 @@
                 <!-- Tab panels -->
                 <div class="tab-content ml-2" style="width: 90%">
                     <!-- passenger register -->
-                    <div class="tab-pane fade in show active">
+                    <div class="tab-pane fade in show active" id="passengerTab">
 
                     <form action="{{ route('register.passenger') }}" class="form" method="POST">
                         @csrf
@@ -263,7 +263,7 @@
                     </form>
                     </div>
                     <!-- tourAdmin register -->
-                    <div class="tab-pane fade">
+                    <div class="tab-pane fade" id="tourAdminTab">
                     <form action="{{ route('register.tourAdmin') }}" class="form" method="POST">
                         @csrf
                         <p class="description text-center">{{ __('navbar.register.tour_admin_register') }}</p>
@@ -271,15 +271,15 @@
                             <div class="form-group bmd-form-group">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <div class="input-group-text"><i class="material-icons">call</i></div>
+                                        <div class="input-group-text"><i class="material-icons">face</i></div>
                                     </div>
-                                    <input name="mobile_number" type="text" class="form-control" placeholder="{{ __('navbar.login.mobile') }}">
+                                    <input name="first_name" type="text" placeholder="{{ __('navbar.register.first_name') }}" class="form-control @if($errors->tourAdminRegister->first('first_name')) is-invalid @endif">
 
-                                    @error('mobile_number')
-                                    <span class="container text-danger text-small" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    @if($errors->tourAdminRegister->first('first_name'))
+                                        <span class="container text-danger text-small" role="alert">
+                                        <strong>{{ $errors->tourAdminRegister->first('first_name') }}</strong>
+                                    </span>
+                                    @endif
 
                                 </div>
                             </div>
@@ -287,22 +287,72 @@
                             <div class="form-group bmd-form-group">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <div class="input-group-text"><i class="material-icons">lock_outline</i></div>
+                                        <div class="input-group-text"><i class="material-icons">face</i></div>
                                     </div>
-                                    <input name="password" type="password" placeholder="{{ __('navbar.login.password') }}" class="form-control">
+                                    <input name="last_name" type="text" placeholder="{{ __('navbar.register.last_name') }}" class="form-control @if($errors->tourAdminRegister->first('last_name')) is-invalid @endif">
 
-                                    @error('password')
-                                    <span class="container text-danger text-small" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    @if($errors->tourAdminRegister->first('last_name'))
+                                        <span class="container text-danger text-small" role="alert">
+                                        <strong>{{ $errors->tourAdminRegister->first('last_name') }}</strong>
+                                    </span>
+                                    @endif
 
                                 </div>
                             </div>
-                        </div>
+
+                            <div class="card-body">
+                                <div class="form-group bmd-form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="material-icons">call</i></div>
+                                        </div>
+                                        <input name="mobile_number" type="text" placeholder="{{ __('navbar.login.mobile') }}" class="form-control @if($errors->tourAdminRegister->first('mobile_number')) is-invalid @endif">
+
+                                        @if($errors->tourAdminRegister->first('mobile_number'))
+                                            <span class="container text-danger text-small" role="alert">
+                                        <strong>{{ $errors->tourAdminRegister->first('mobile_number') }}</strong>
+                                    </span>
+                                        @endif
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group bmd-form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="material-icons">lock_outline</i></div>
+                                        </div>
+                                        <input name="password" type="password" placeholder="{{ __('navbar.login.password') }}" class="form-control @if($errors->tourAdminRegister->first('password')) is-invalid @endif">
+
+                                        @if($errors->tourAdminRegister->first('password'))
+                                            <span class="container text-danger text-small" role="alert">
+                                        <strong>{{ $errors->tourAdminRegister->first('password') }}</strong>
+                                    </span>
+                                        @endif
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group bmd-form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="material-icons">lock_outline</i></div>
+                                        </div>
+                                        <input name="password_confirmation" type="password" placeholder="{{ __('navbar.login.password_confirmation') }}" class="form-control @if($errors->tourAdminRegister->first('password')) is-invalid @endif">
+
+                                        @if($errors->tourAdminRegister->first('password'))
+                                            <span class="container text-danger text-small" role="alert">
+                                                <strong>{{ $errors->tourAdminRegister->first('password') }}</strong>
+                                            </span>
+                                        @endif
+
+                                    </div>
+                                </div>
+                            </div>
                         <button type="submit" class="container text-center ml-2 btn btn-primary btn-link btn-wd btn-lg">
                             {{ __('navbar.main.register') }}
                         </button>
+                    </div>
                     </form>
                     </div>
                 </div>
