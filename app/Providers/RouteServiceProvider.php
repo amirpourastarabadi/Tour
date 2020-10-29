@@ -20,6 +20,7 @@ class RouteServiceProvider extends ServiceProvider
      protected $tourAdminNamespace = 'App\\Http\\Controllers\\TourAdmin';
      protected $passengerNamespace = 'App\\Http\\Controllers\\Passenger';
      protected $checkRoleNamespace = 'App\\Http\\Controllers\\CheckRole';
+     protected $registerNamespace = 'App\\Http\\Controllers\\Register';
 
 
     public function boot()
@@ -61,6 +62,12 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->superAdminNamespace)
                 ->name('superAdmin.')
                 ->group(base_path('routes/superAdmin/web.php'));
+
+            Route::middleware('web')
+                ->prefix('register')
+                ->namespace($this->registerNamespace)
+                ->name('register.')
+                ->group(base_path('routes/register/web.php'));
 
             Route::middleware('web')
                 ->namespace($this->namespace)

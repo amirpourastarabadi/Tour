@@ -27,7 +27,7 @@
 <nav class="navbar navbar-expand-lg bg-primary sticky-top">
     <div class="container">
         <div class="collapse navbar-collapse">
-            <a class="navbar-brand" href="{{ route('welcome') }}">{{ __('navbar.tour') }}</a>
+            <a class="navbar-brand" href="{{ route('welcome') }}">{{ __('navbar.main.tour') }}</a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item" style="margin-bottom: -20px">
                     @auth
@@ -35,29 +35,29 @@
                             @csrf
                             <a href="{{ route('welcome') }}" class="nav-link d-inline-flex">
                                 <i class="material-icons">home</i>
-                                <p>{{ __('navbar.home') }}</p>
+                                <p>{{ __('navbar.main.home') }}</p>
                             </a>
 
                             <a class="nav-link d-inline-flex" href="{{ route( Auth::user()->role . '.profile.index' ) }}">
                                 <i class="material-icons">dashboard</i>
-                                <p>{{ __('navbar.panel') }}</p>
+                                <p>{{ __('navbar.main.panel') }}</p>
                             </a>
 
                             <a class="nav-link d-inline-flex" style="cursor: pointer" onclick="this.parentNode.submit();">
                                 <i class="material-icons">exit_to_app</i>
-                                <p>{{ __('navbar.logout') }}</p>
+                                <p>{{ __('navbar.main.logout') }}</p>
                             </a>
                         </form>
                     @else
                         <div class="form-inline ml-auto">
-                            <a  type="button" class="nav-link d-inline-flex" style="cursor: pointer" data-toggle="modal" data-target="#loginModal">
+                            <a type="button" class="nav-link d-inline-flex" style="cursor: pointer" data-toggle="modal" data-target="#loginModal">
                                 <i class="material-icons">login</i>
-                                <p>{{ __('navbar.login') }}</p>
+                                <p>{{ __('navbar.main.login') }}</p>
                             </a>
 
                             <a type="button" class="nav-link d-inline-flex" style="cursor: pointer" data-toggle="modal" data-target="#registerModal">
                                 <i class="material-icons">person_add</i>
-                                <p>{{ __('navbar.register') }}</p>
+                                <p>{{ __('navbar.main.register') }}</p>
                             </a>
                         </div>
                     @endif
@@ -65,7 +65,7 @@
             </ul>
             <form class="form-inline ml-auto">
                 <div class="form-group has-white">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" class="form-control" placeholder="{{ __('navbar.main.search') }}">
                 </div>
 
                 {{--#TODO create search process--}}
@@ -87,21 +87,21 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             <i class="material-icons">clear</i>
                         </button>
-                        <h4 class="card-title">{{ __('navbar.login') }}</h4>
+                        <h4 class="card-title">{{ __('navbar.main.login') }}</h4>
                         <br>
                     </div>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('login') }}" class="form" method="POST">
                         @csrf
-                        <p class="description text-center">{{ __('navbar.description') }}</p>
+                        <p class="description text-center">{{ __('navbar.login.description') }}</p>
                         <div class="card-body">
                             <div class="form-group bmd-form-group">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="material-icons">call</i></div>
                                     </div>
-                                    <input name="mobile_number" type="text" class="form-control" placeholder="{{ __('navbar.mobile') }}">
+                                    <input name="mobile_number" type="text" placeholder="{{ __('navbar.login.mobile') }}" class="form-control @error('mobile_number') is-invalid @enderror">
 
                                     @error('mobile_number')
                                         <span class="container text-danger text-small" role="alert">
@@ -117,7 +117,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="material-icons">lock_outline</i></div>
                                     </div>
-                                    <input name="password" type="password" placeholder="{{ __('navbar.password') }}" class="form-control">
+                                    <input name="password" type="password" placeholder="{{ __('navbar.login.password') }}" class="form-control @error('password') is-invalid @enderror">
 
                                     @error('password')
                                         <span class="container text-danger text-small" role="alert">
@@ -129,9 +129,182 @@
                             </div>
                         </div>
                         <button type="submit" class="container text-center ml-2 btn btn-primary btn-link btn-wd btn-lg">
-                            {{ __('navbar.login') }}
+                            {{ __('navbar.main.login') }}
                         </button>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Register modal-->
+<div class="modal fade" id="registerModal" tabindex="-1">
+    <div class="modal-dialog modal-login" style="width: 50%" role="document">
+        <div class="modal-content">
+            <div class="card card-signup card-plain">
+                <div class="modal-header">
+                    <div class="card-header card-header-primary text-center">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="material-icons">clear</i>
+                        </button>
+                        <h4 class="card-title">{{ __('navbar.main.register') }}</h4>
+                        <br>
+                        <ul class="container justify-content-around nav nav-tabs md-tabs tabs-2">
+                            <li class="nav-item">
+                                <a class="nav-link active d-inline-flex" id="passenger" data-toggle="tab" href="#passenger">
+                                    <i class="material-icons">card_travel</i>
+                                    <p>{{ __('navbar.main.passenger') }}</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-inline-flex" id="tourAdmin" data-toggle="tab" href="#tourAdmin">
+                                    <i class="material-icons">support_agent</i>
+                                    <p>{{ __('navbar.main.tour_admin') }}</p>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <!-- Tab panels -->
+                <div class="tab-content ml-2" style="width: 90%">
+                    <!-- passenger register -->
+                    <div class="tab-pane fade in show active">
+
+                    <form action="{{ route('register.passenger') }}" class="form" method="POST">
+                        @csrf
+                        <p class="description text-center">{{ __('navbar.register.passenger_register') }}</p>
+
+                        <div class="form-group bmd-form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="material-icons">face</i></div>
+                                </div>
+                                <input name="first_name" type="text" placeholder="{{ __('navbar.register.first_name') }}" class="form-control @if($errors->passengerRegister->first('first_name')) is-invalid @endif">
+
+                                @if($errors->passengerRegister->first('first_name'))
+                                    <span class="container text-danger text-small" role="alert">
+                                        <strong>{{ $errors->passengerRegister->first('first_name') }}</strong>
+                                    </span>
+                                @endif
+
+                            </div>
+                        </div>
+
+                        <div class="form-group bmd-form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="material-icons">face</i></div>
+                                </div>
+                                <input name="last_name" type="text" placeholder="{{ __('navbar.register.last_name') }}" class="form-control @if($errors->passengerRegister->first('last_name')) is-invalid @endif">
+
+                                @if($errors->passengerRegister->first('last_name'))
+                                    <span class="container text-danger text-small" role="alert">
+                                        <strong>{{ $errors->passengerRegister->first('last_name') }}</strong>
+                                    </span>
+                                @endif
+
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="form-group bmd-form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="material-icons">call</i></div>
+                                    </div>
+                                    <input name="mobile_number" type="text" placeholder="{{ __('navbar.login.mobile') }}" class="form-control @if($errors->passengerRegister->first('mobile_number')) is-invalid @endif">
+
+                                    @if($errors->passengerRegister->first('mobile_number'))
+                                        <span class="container text-danger text-small" role="alert">
+                                        <strong>{{ $errors->passengerRegister->first('mobile_number') }}</strong>
+                                    </span>
+                                    @endif
+
+                                </div>
+                            </div>
+
+                            <div class="form-group bmd-form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="material-icons">lock_outline</i></div>
+                                    </div>
+                                    <input name="password" type="password" placeholder="{{ __('navbar.login.password') }}" class="form-control @if($errors->passengerRegister->first('password')) is-invalid @endif">
+
+                                    @if($errors->passengerRegister->first('password'))
+                                        <span class="container text-danger text-small" role="alert">
+                                        <strong>{{ $errors->passengerRegister->first('password') }}</strong>
+                                    </span>
+                                    @endif
+
+                                </div>
+                            </div>
+
+                            <div class="form-group bmd-form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="material-icons">lock_outline</i></div>
+                                    </div>
+                                    <input name="password_confirmation" type="password" placeholder="{{ __('navbar.login.password_confirmation') }}" class="form-control @if($errors->passengerRegister->first('password')) is-invalid @endif">
+
+                                    @if($errors->passengerRegister->first('password'))
+                                        <span class="container text-danger text-small" role="alert">
+                                        <strong>{{ $errors->passengerRegister->first('password') }}</strong>
+                                    </span>
+                                    @endif
+
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="container text-center ml-2 btn btn-primary btn-link btn-wd btn-lg">
+                            {{ __('navbar.main.register') }}
+                        </button>
+                    </form>
+                    </div>
+                    <!-- tourAdmin register -->
+                    <div class="tab-pane fade">
+                    <form action="{{ route('register.tourAdmin') }}" class="form" method="POST">
+                        @csrf
+                        <p class="description text-center">{{ __('navbar.register.tour_admin_register') }}</p>
+                        <div class="card-body">
+                            <div class="form-group bmd-form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="material-icons">call</i></div>
+                                    </div>
+                                    <input name="mobile_number" type="text" class="form-control" placeholder="{{ __('navbar.login.mobile') }}">
+
+                                    @error('mobile_number')
+                                    <span class="container text-danger text-small" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
+                                </div>
+                            </div>
+
+                            <div class="form-group bmd-form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="material-icons">lock_outline</i></div>
+                                    </div>
+                                    <input name="password" type="password" placeholder="{{ __('navbar.login.password') }}" class="form-control">
+
+                                    @error('password')
+                                    <span class="container text-danger text-small" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="container text-center ml-2 btn btn-primary btn-link btn-wd btn-lg">
+                            {{ __('navbar.main.register') }}
+                        </button>
+                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -148,8 +321,19 @@
 <script src="{{asset('assets/js/material-dashboard.min.js?v=2.1.2')}}" type="text/javascript"></script>
 
 <script type="text/javascript">
-    @if ($errors->any())
+    @if($errors->login->any())
+
         $('#loginModal').modal('show');
+
+    @elseif($errors->passengerRegister->any())
+
+        $('#registerModal').modal('show');
+
+    @elseif ($errors->tourAdminRegister->any())
+
+        $('#registerModal').modal('show');
+        $('#tourAdmin').click();
+
     @endif
 </script>
 
