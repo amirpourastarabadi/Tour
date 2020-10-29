@@ -371,7 +371,7 @@
 <script src="{{asset('assets/js/material-dashboard.min.js?v=2.1.2')}}" type="text/javascript"></script>
 
 <script type="text/javascript">
-    @if($errors->login->any())
+    @if($errors->any())
 
         $('#loginModal').modal('show');
 
