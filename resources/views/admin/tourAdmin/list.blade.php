@@ -1,5 +1,5 @@
 @extends('layouts.superAdmin')
-
+{{--#TODO change layout--}}
 @section('content')
 
     <h3>Admins list</h3>
