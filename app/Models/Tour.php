@@ -26,4 +26,12 @@ class Tour extends Model
     public function passengers(){
         return $this->belongsToMany(Passenger::class);
     }
+
+    public function hotel(){
+        return $this->belongsTo(Hotel::class);
+    }
+
+    public function tourAdmin(){
+        return $this->belongsTo(TourAdmin::class);
+    }
 }

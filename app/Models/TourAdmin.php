@@ -23,4 +23,8 @@ class TourAdmin extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function tours(){
+        return $this->hasMany(Tour::class);
+    }
 }

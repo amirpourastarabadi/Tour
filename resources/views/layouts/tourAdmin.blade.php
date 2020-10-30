@@ -43,6 +43,13 @@
                 </li>
 
                 <li class="nav-item active">
+                    <a class="nav-link" href="{{ route('tourAdmin.reservation.index') }}">
+                        <i class="material-icons">account_circle</i>
+                        <p>Reservation</p>
+                    </a>
+                </li>
+
+                <li class="nav-item active">
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <a class="nav-link" style="cursor: pointer" onclick="this.parentNode.submit();">
