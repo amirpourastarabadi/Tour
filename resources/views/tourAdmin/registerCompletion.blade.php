@@ -100,7 +100,7 @@
             {{ __('tourAdmin.edit.submit') }}
         </button>
 
-        <a href="{{ route('welcome') }}" type="submit" class="btn btn-danger text-light"
+        <a href="{{ route('index') }}" type="submit" class="btn btn-danger text-light"
            onclick="return confirm('{{ __('tourAdmin.alerts.completion.cancel_completion') }}');">
             {{ __('tourAdmin.list.cancel') }}
         </a>

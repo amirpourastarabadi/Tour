@@ -27,13 +27,13 @@
 <nav class="navbar navbar-expand-lg bg-primary sticky-top">
     <div class="container">
         <div class="collapse navbar-collapse">
-            <a class="navbar-brand" href="{{ route('welcome') }}">{{ __('navbar.main.tour') }}</a>
+            <a class="navbar-brand" href="{{ route('index') }}">{{ __('navbar.main.tour') }}</a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item" style="margin-bottom: -20px">
                     @auth
                         <form class="form-inline ml-auto" action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <a href="{{ route('welcome') }}" class="nav-link d-inline-flex">
+                            <a href="{{ route('index') }}" class="nav-link d-inline-flex">
                                 <i class="material-icons">home</i>
                                 <p>{{ __('navbar.main.home') }}</p>
                             </a>
