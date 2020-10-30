@@ -76,7 +76,9 @@
         </div>
     </div>
 </nav>
-
+@auth
+    @yield('main_content')
+@else
 <!--Login modal-->
 <div class="modal fade" id="loginModal" tabindex="-1">
     <div class="modal-dialog modal-login" role="document">
@@ -360,8 +362,8 @@
         </div>
     </div>
 </div>
-
 @yield('main_content')
+@endif
 <!--   Core JS Files   -->
 <script src="{{asset('assets/js/core/jquery.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/js/core/popper.min.js')}}" type="text/javascript"></script>

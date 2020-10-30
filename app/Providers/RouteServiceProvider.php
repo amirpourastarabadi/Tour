@@ -37,9 +37,11 @@ class RouteServiceProvider extends ServiceProvider
 //                ->namespace($this->passengerNamespace)
 //                ->group(base_path('routes/customer/web.php'));
 //
-//            Route::middleware(['web', 'auth', 'role'])
-//                ->namespace($this->tourAdminNamespace)
-//                ->group(base_path('routes/tourAdmin/web.php'));
+            Route::middleware(['web', 'auth', 'role'])
+                ->namespace($this->tourAdminNamespace)
+                ->prefix('tourAdmin')
+                ->name('tourAdmin.')
+                ->group(base_path('routes/tourAdmin/web.php'));
 //
 //            Route::middleware(['web', 'auth', 'role'])
 //                ->name('admin.')
@@ -58,14 +60,14 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/checkRole/web.php'));
 
             Route::middleware(['web', 'auth', 'role'])
-                ->prefix('superAdmin')
                 ->namespace($this->superAdminNamespace)
+                ->prefix('superAdmin')
                 ->name('superAdmin.')
                 ->group(base_path('routes/superAdmin/web.php'));
 
             Route::middleware('web')
-                ->prefix('register')
                 ->namespace($this->registerNamespace)
+                ->prefix('register')
                 ->name('register.')
                 ->group(base_path('routes/register/web.php'));
 
