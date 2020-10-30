@@ -18,7 +18,7 @@ class CreatePassengersTable extends Migration
                 ->cascadeOnDelete();
 
             $table->string('email', 150)->nullable()->unique();
-            $table->string('telephone_number', 20)->unique();
+            $table->string('telephone_number', 20)->nullable()->unique();
             $table->string('national_code', 10)->unique();
             $table->date('birthday')->nullable();
         });

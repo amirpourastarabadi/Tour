@@ -17,7 +17,8 @@ class Tour extends Model
         'start_at',
         'duration',
         'price',
-        'count',
+        'total_num',
+        'filled_num',
         'personal_certificates',
         'marriage_certificates',
     ];
@@ -33,5 +34,18 @@ class Tour extends Model
 
     public function tourAdmin(){
         return $this->belongsTo(TourAdmin::class);
+    }
+
+    public function prettyPrice(){
+        $price = chunk_split(strval($this->price), 3, ',');
+        $pretty = '';
+        for ($i = 0; $i < strlen($price)-1; $i++){
+            $pretty .= $price[$i];
+        }
+        return $pretty;
+    }
+
+    public function hasCapacity(){
+        return (($this->total_num - $this->filled_num)> 0) ? true : false;
     }
 }

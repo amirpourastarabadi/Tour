@@ -26,7 +26,8 @@ class CreateToursTable extends Migration
             $table->date('start_at');
             $table->smallInteger('duration');
             $table->mediumInteger('price');
-            $table->smallInteger('count');
+            $table->smallInteger('total_num');
+            $table->smallInteger('filled_num')->comment('must be <= total_num');
             $table->boolean('personal_certificates');
             $table->boolean('marriage_certificates');
             $table->timestamps();
