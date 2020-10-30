@@ -35,11 +35,13 @@ class RouteServiceProvider extends ServiceProvider
 //            Route::middleware(['web', 'auth', 'role'])
 //                ->namespace($this->passengerNamespace)
 //                ->group(base_path('routes/customer/web.php'));
-//
-//            Route::middleware(['web', 'auth', 'role'])
-//                ->namespace($this->tourAdminNamespace)
-//                ->group(base_path('routes/tourAdmin/web.php'));
-//
+
+            Route::middleware(['web', 'auth', 'role'])
+                ->namespace($this->tourAdminNamespace)
+                ->prefix('tourAdmin')
+                ->name('tourAdmin.')
+                ->group(base_path('routes/tourAdmin/web.php'));
+
 //            Route::middleware(['web', 'auth', 'role'])
 //                ->name('admin.')
 //                ->prefix('admin/')
