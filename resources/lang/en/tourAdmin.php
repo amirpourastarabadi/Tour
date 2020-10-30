@@ -50,4 +50,11 @@ return [
         'telephone_number' => 'Telephone Numbers',
         'telephone_number_description' => 'Separate Telephone Numbers with comma(,)',
     ],
+    'layout' => [
+        'hi' => 'Hello'
+    ],
+    'profile' => [
+        'agency' => 'Agency',
+
+    ]
 ];
