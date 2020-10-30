@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\TourAdmin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TourAdminEditRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,17 +25,15 @@ class ProfileController extends Controller
         return view('tourAdmin.profile.edit', compact('user'));
     }
 
-    public function update(Request $request, $id)
+    public function update(TourAdminEditRequest $request, $id)
     {
+
         Auth::user()->update($request->all());
         Auth::user()->tourAdmin->update($request->all());
-        return redirect()->back();
+        return redirect()->route('tourAdmin.profile.index');
 
     }
 
-    public function destroy($id)
-    {
-    }
 
     public function restPassword()
     {

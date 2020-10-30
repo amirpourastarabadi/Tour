@@ -11,7 +11,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-
+1
                     Manager: <span class="text-success"
                                    style="font-size: large"><b>{{ $user->first_name }}, {{$user->last_name}}</b></span>
                     <br/><br/>
