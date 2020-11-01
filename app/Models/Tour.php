@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -42,10 +43,22 @@ class Tour extends Model
         for ($i = 0; $i < strlen($price)-1; $i++){
             $pretty .= $price[$i];
         }
-        return $pretty;
+        return "$ ".$pretty;
     }
 
     public function hasCapacity(){
         return (($this->total_num - $this->filled_num)> 0) ? true : false;
+    }
+
+    public function addToDate($duration){
+        $date = Carbon::createFromFormat('Y-m-d', $this->start_at);
+        $date = $date->addDays(2)->format('Y-m-d');
+        return $date;
+    }
+
+    public function makeReservation(User $user){
+        $user->passenger->tours()->attach($this['id']);
+        $this->filled_num += 1;
+        $this->save();
     }
 }

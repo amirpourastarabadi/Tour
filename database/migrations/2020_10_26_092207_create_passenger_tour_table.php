@@ -20,6 +20,8 @@ class CreatePassengerTourTable extends Migration
                 ->on('tours')
                 ->cascadeOnDelete();
 
+            $table->unique(['passenger_id', 'tour_id']);
+
             $table->timestamps();
         });
     }

@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\CheckUser;
+use App\Events\PhoneVerification;
+use App\Listeners\CreateIfNotExist;
+use App\Listeners\SendMessage;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +22,12 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        PhoneVerification::class => [
+            SendMessage::class,
+        ],
+        CheckUser::class => [
+            CreateIfNotExist::class
+        ]
     ];
 
     /**
