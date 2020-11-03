@@ -46,22 +46,14 @@ class TourAdminController extends Controller
     }
 
 
-    public function show($id)
+    public function edit(TourAdmin $tourAdmin)
     {
-        //
+        return view('admin.tourAdmin.edit', ['item' => $tourAdmin]);
     }
 
 
-    public function edit($id)
+    public function update(Request $request, TourAdmin $tourAdmin)
     {
-        $item = TourAdmin::findOrFail($id);
-        return view('admin.tourAdmin.edit', compact('item'));
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        $tourAdmin = TourAdmin::findOrFail($id);
         $tourAdmin->update($request->all());
         $tourAdmin->user->update($request->only(['first_name', 'last_name', 'mobile_number']));
         return redirect()->route('admin.tourAdmins.index')->withResult([
@@ -70,21 +62,19 @@ class TourAdminController extends Controller
         ]);    }
 
 
-    public function destroy($id)
+    public function destroy(TourAdmin $tourAdmin)
     {
-        $tour_admin = TourAdmin::findOrFail($id);
-        $tour_admin->user->delete();
-        $tour_admin->delete();
+        $tourAdmin->user->delete();
+        $tourAdmin->delete();
         return redirect()->back()->withResult([
-            'message' => __('Admin.alerts.tourAdmin.delete', ['first_name' => $tour_admin->user->first_name, 'last_name' => $tour_admin->user->last_name]),
+            'message' => __('Admin.alerts.tourAdmin.delete', ['first_name' => $tourAdmin->user->first_name, 'last_name' => $tourAdmin->user->last_name]),
             'alert'   => 'danger',
         ]);
     }
 
 
-    public function keyGenerate($id){
+    public function keyGenerate(TourAdmin $tourAdmin){
         $pass = Str::random(10);
-        $tourAdmin = TourAdmin::findOrFail($id);
         $tourAdmin->user->password = Hash::make($pass);
         $tourAdmin->user->save();
         return redirect()->back()->withResult([

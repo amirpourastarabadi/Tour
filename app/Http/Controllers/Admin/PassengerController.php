@@ -73,11 +73,10 @@ class PassengerController extends Controller
     }
 
 
-    public function keyGenerate($id){
+    public function keyGenerate(Passenger $passenger){
         $pass = Str::random(10);
-        $passenter = Passenger::findOrFail($id);
-        $passenter->user->password = Hash::make($pass);
-        $passenter->user->save();
+        $passenger->user->password = Hash::make($pass);
+        $passenger->user->save();
         return redirect()->back()->withResult([
             'message' => __('Admin.alerts.admin.reset_password', ['password' => $pass]),
             'alert'   => 'primary',

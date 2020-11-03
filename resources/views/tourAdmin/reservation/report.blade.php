@@ -15,7 +15,7 @@
     @component('components.report',['WIDTH'=> 2, 'TITLE'=> "Phone Number:", "DATA" => $user->mobile_number])@endcomponent
 
     <div class="row my-3">
-        <a href="" class="btn btn-info mx-3">Tour's Passengers</a>
+        <a href="{{ route('tourAdmin.reservation.show', $tour) }}" class="btn btn-info mx-3">Tour's Passengers</a>
         <a href="{{route('tourAdmin.reservation.index')}}" class="btn btn-success">Reservation Page</a>
     </div>
 @endsection

@@ -21,6 +21,7 @@ class CreatePassengerTourTable extends Migration
                 ->cascadeOnDelete();
 
             $table->unique(['passenger_id', 'tour_id']);
+            $table->integer('count');
 
             $table->timestamps();
         });

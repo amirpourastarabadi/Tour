@@ -26,7 +26,7 @@ class Tour extends Model
 
 
     public function passengers(){
-        return $this->belongsToMany(Passenger::class);
+        return $this->belongsToMany(Passenger::class)->withTimestamps();
     }
 
     public function hotel(){
@@ -56,7 +56,7 @@ class Tour extends Model
         return $date;
     }
 
-    public function makeReservation(User $user){
+    public function   makeReservation(User $user){
         $user->passenger->tours()->attach($this['id']);
         $this->filled_num += 1;
         $this->save();

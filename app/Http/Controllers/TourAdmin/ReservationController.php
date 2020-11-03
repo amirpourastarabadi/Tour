@@ -4,6 +4,7 @@ namespace App\Http\Controllers\TourAdmin;
 
 use App\Events\PhoneVerification;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ReservationRequest;
 use App\Models\Tour;
 use App\Models\TourAdmin;
 use App\Models\User;
@@ -35,26 +36,20 @@ class ReservationController extends Controller
         return view('tourAdmin.reservation.create', compact('tour'));
     }
 
-    public function store(Request $request, Tour $tour)
+    public function store(ReservationRequest $request, Tour $tour)
     {
-        $request->validate([
-            'national_code' => 'bail|required|string|size:10',
-            'mobile_number' => 'bail|required',
-            'first_name' => 'bail|required|min:3|string|max:255',
-            'last_name' => 'bail|required|string|min:3|max:255',
-            'birthday' => 'bail|required|date',
-            'password' => 'bail|required',
-        ]);
-
+        if($request['password'] != $this->client->get($request['mobile_number'])){
+            return back()->withErrors(['invalid' => 'this key is not valid'])->withInput();
+        }
         $request['password'] = Hash::make($request['password']);
         $user = User::find(event(new CheckUser($request))[0]['id']);
-        $tour->makeReservation($user);
+        $tour->makeReservation($user, $request);
         return view('tourAdmin.reservation.report', compact('tour', 'user'));
     }
 
-    public function show($id)
+    public function show(Tour $reservation)
     {
-
+        return view('tourAdmin.reservation.show', ["tour" => $reservation]);
     }
 
     public function edit($id)
@@ -75,14 +70,23 @@ class ReservationController extends Controller
     public function phoneVerification()
     {
         $phone_number = \request()->input('phone_number');
-        $data = Str::random(7);
-        $this->client->set($phone_number, $data);
+        $data['result'] = Str::random(7);
+        $this->client->set($phone_number, $data['result']);
         event(new PhoneVerification($phone_number));
         if($user = User::where('mobile_number', $phone_number)->first()){
-            return [$user, $user->passenger];
+            return [$user, $user->passenger, $data];
         }
-        return $data;
+        return false;
     }
+
+    public function check(){
+        if(\request()->input('password') === $this->client->get(\request()->input('phone_number'))){
+            return true;
+        }
+        return false;
+    }
+
+
 
 
 }
