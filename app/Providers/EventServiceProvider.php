@@ -22,9 +22,6 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        PhoneVerification::class => [
-            SendMessage::class,
-        ],
         CheckUser::class => [
             CreateIfNotExist::class
         ]
