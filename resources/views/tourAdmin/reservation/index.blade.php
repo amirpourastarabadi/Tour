@@ -4,6 +4,7 @@
     <div class="content">
         {{--#TODO add search form--}}
         <div class="container-fluid">
+            @error('no_capacity') <div class="col-12 alert alert-danger">{{$message}}</div> @enderror
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">

@@ -3,9 +3,11 @@
 @section('content')
     <form action="{{ route('tourAdmin.reservation.step2') }}" method="POST">
         @csrf
+
         @component('components.tour-information', ['TOUR' => $tour])
         @endcomponent
-        <br/>
+
+        <hr/>
         <fieldset>
             <legend>Passenger</legend>
             <div class="form-row mt-3">

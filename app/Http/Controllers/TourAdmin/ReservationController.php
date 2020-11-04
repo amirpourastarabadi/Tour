@@ -5,14 +5,11 @@ namespace App\Http\Controllers\TourAdmin;
 use App\Events\CheckUser;
 use App\Events\PhoneVerification;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ReservationRequest;
 use App\Models\Tour;
 use App\Models\TourAdmin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use Predis\Client;
 
 class ReservationController extends Controller
@@ -27,52 +24,57 @@ class ReservationController extends Controller
     public function index()
     {
         $agency = TourAdmin::where('user_id', Auth::user()->id)->get()->first();
-        $tours = Tour::where('tour_admin_id', $agency->id)->with('hotel')->latest('id')->paginate(5);
+        $tours = Tour::where('tour_admin_id', $agency->id)->with('hotel')->latest('id')->paginate(7);
         return view('tourAdmin.reservation.index', compact('tours'));
     }
 
-    public function create(Tour $tour)
+    public function step1(Tour $tour)
     {
-        request()->session()->put('reservation.tour', $tour);
+        if(! $tour->hasCapacity()){
+            return back()->withErrors(['no_capacity' => "This tour has no capacity"]);
+        }
+        session()->forget('reservation');
+        session()->put('reservation.tour', $tour);
         return view('tourAdmin.reservation.create', compact('tour'));
-    }
-
-    public function store(Request $request)
-    {
-        dd(session()->get('reservation'));
-        event(new CheckUser(session()->get('reservation.user')));
-//        $tour->makeReservation($user, $request);
-        return view('tourAdmin.reservation.report', compact('tour', 'user'));
-    }
-
-    public function show(Tour $reservation)
-    {
-        return view('tourAdmin.reservation.show', ["tour" => $reservation]);
-    }
-
-    public function edit($id)
-    {
-
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-
     }
 
     public function step2(Request $request)
     {
-        $request->session()->flash('reservation.user');
-        if($user = User::where('mobile_number', $request['mobile_number'])->first()){
-            $request->session()->put('reservation.user', $user);
+        if ($user = User::where('mobile_number', $request['mobile_number'])->first()) {
+            session()->put('reservation.user', $user);
+        } else {
+            session()->put('reservation.user', $request['mobile_number']);
         }
         return view('tourAdmin.reservation.personalInformation');
 
+    }
+
+    public function store(Request $request)
+    {
+        event(new CheckUser(session()->get('reservation.user'), $request));
+        return view('tourAdmin.reservation.report',
+            [
+                'tour' => session('reservation.tour'),
+                'user' => session('reservation.user'),
+                'count' => $request['count']
+            ]);
+    }
+
+    public function show(Tour $reservation)
+    {
+        session()->flash('reservation');
+        return view('tourAdmin.reservation.show', ["tour" => $reservation]);
+    }
+
+    public function cancel(){
+        session()->flash('reservation');
+        return redirect(route('tourAdmin.reservation.index'));
+    }
+
+    public function confirm($count){
+
+        session('reservation.tour')->makeReservation(session()->get('reservation.user')->passenger, $count);
+        return redirect(route('tourAdmin.reservation.show', session()->get('reservation.tour')));
     }
 
 

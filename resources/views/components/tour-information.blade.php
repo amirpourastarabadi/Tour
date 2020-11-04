@@ -15,7 +15,7 @@
         </div>
         <div class="form-group bmd-form-group col-md-3">
             <label class="form-label">Price</label>
-            <input type="text" class="form-control" value="{{$TOUR->prettyPrice()}}" disabled>
+            <input type="text" class="form-control" value="{{$TOUR->prettyPrice($TOUR->price)}}" disabled>
         </div>
     </div>
 </fieldset>

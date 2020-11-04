@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Tour extends Model
 {
@@ -25,40 +26,65 @@ class Tour extends Model
     ];
 
 
-    public function passengers(){
+    public function passengers()
+    {
         return $this->belongsToMany(Passenger::class)->withTimestamps();
     }
 
-    public function hotel(){
+    public function hotel()
+    {
         return $this->belongsTo(Hotel::class);
     }
 
-    public function tourAdmin(){
+    public function tourAdmin()
+    {
         return $this->belongsTo(TourAdmin::class);
     }
 
-    public function prettyPrice(){
-        $price = chunk_split(strval($this->price), 3, ',');
+    public function prettyPrice($price)
+    {
+        $price = chunk_split(strval($price), 3, ',');
         $pretty = '';
-        for ($i = 0; $i < strlen($price)-1; $i++){
+        for ($i = 0; $i < strlen($price) - 1; $i++) {
             $pretty .= $price[$i];
         }
-        return "$ ".$pretty;
+        return "$ " . $pretty;
     }
 
-    public function hasCapacity(){
-        return (($this->total_num - $this->filled_num)> 0) ? true : false;
+    public function hasCapacity()
+    {
+        return (($this->total_num - $this->filled_num) > 0) ? true : false;
     }
 
-    public function addToDate($duration){
+    public function addToDate($duration)
+    {
         $date = Carbon::createFromFormat('Y-m-d', $this->start_at);
         $date = $date->addDays(2)->format('Y-m-d');
         return $date;
     }
 
-    public function   makeReservation(User $user){
-        $user->passenger->tours()->attach($this['id']);
-        $this->filled_num += 1;
+    public function makeReservation($passenger, $count)
+    {
+
+        if ($item = DB::table('passenger_tour')
+            ->where('tour_id', $this['id'])
+            ->where('passenger_id', $passenger->id)
+            ->first()) {
+            DB::table('passenger_tour')
+                ->where('tour_id', $this['id'])
+                ->where('passenger_id', $passenger->id)
+                ->increment('count', $count);
+        } else {
+            DB::table('passenger_tour')->insert([
+                'tour_id' => $this['id'],
+                'passenger_id' => $passenger->id,
+                'count' => $count,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+        $this->filled_num += $count;
         $this->save();
+
     }
 }

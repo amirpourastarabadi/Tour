@@ -7,7 +7,7 @@
             <input name="first_name" id="first_name"
                    value="@include('includs.get-passenger-valu-form-session', ['ATTRIBUTE' => 'first_name'])"
                    type="text"
-                   class="form-control">
+                   class="form-control" required>
             @error('first_name') <span class="text-danger">{{$message}}</span>@enderror
         </div>
         <div class="form-group col-md-6">
@@ -15,7 +15,7 @@
             <input name="last_name" id="last_name"
                    value="@include('includs.get-passenger-valu-form-session', ['ATTRIBUTE' => 'last_name'])"
                    type="text"
-                   class="form-control">
+                   class="form-control" required>
             @error('last_name') <span class="text-danger">{{$message}}</span>@enderror
         </div>
     </div>
@@ -27,7 +27,7 @@
                    value=@if(session('reservation.user')) "{{session('reservation.user.passenger.national_code')}}" @else
                 "{{old('national_code')}}" @endif
             type="text"
-            class="form-control">
+            class="form-control" required>
             @error('national_code') <span class="text-danger">{{$message}}</span>@enderror
         </div>
         <div class="form-group col-md-6">
@@ -35,8 +35,17 @@
             <input name="birthday" id="birthday"
                    value=@if(session('reservation.user')) "{{session('reservation.user.passenger.birthday')}}" @else
                 "{{old('birthday')}}" @endif
-            type="date" class="form-control">
+            type="date" class="form-control" required>
             @error('birthday') <span class="text-danger">{{$message}}</span>@enderror
+        </div>
+    </div>
+    <br>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Number Of Tickets</label>
+            <input name="count" type="number"  max="{{session('reservation.tour.total_num') - session('reservation.tour.filled_num')}}" required
+            class="form-control">
+            @error('count') <span class="text-danger">{{$message}}</span>@enderror
         </div>
     </div>
     <br>

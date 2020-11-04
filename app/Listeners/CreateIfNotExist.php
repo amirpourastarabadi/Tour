@@ -2,8 +2,8 @@
 
 namespace App\Listeners;
 
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class CreateIfNotExist
 {
@@ -25,6 +25,22 @@ class CreateIfNotExist
      */
     public function handle($event)
     {
-        dd($event->user);
+
+        if( ! $event->user instanceof User){
+            if($user = User::where('mobile_number', $event->user)->first()){
+                session()->put('reservation.user', $user);
+            }else
+            {
+                $event->request['password'] = Hash::make('password');
+                $event->request['role'] = 'customer';
+                $event->request['mobile_number'] = session('reservation.user');
+
+                $user = User::create($event->request->all());
+                $passenger = $user->passenger()->create($event->request->all());
+
+                session()->put('reservation.user', $user);
+            }
+        }
+
     }
 }

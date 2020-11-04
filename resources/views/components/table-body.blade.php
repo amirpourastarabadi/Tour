@@ -5,7 +5,7 @@
         <td>{{$tour->destination}}</td>
         <td>{{$tour->start_at}}</td>
         <td class="text-center">{{$tour->duration}}</td>
-        <td>{{$tour->price}}</td>
+        <td>{{$tour->prettyPrice($tour->price)}}</td>
         <td class="text-center">{{$tour->total_num}}</td>
         <td class="text-center">{{$tour->total_num - $tour->filled_num}}</td>
 
@@ -16,10 +16,10 @@
                 <i class="material-icons">add</i>
             </a>
             @else
-                <a href="" class="btn btn-dark"
+                <btn class="btn btn-dark"
                    title="Full">
                     <i class="material-icons">add</i>
-                </a>
+                </btn>
             @endif
             <a href="{{ route('tourAdmin.reservation.show', $tour) }}" class="btn btn-info" title="Tour List">
                 <i class="material-icons">view_list</i>

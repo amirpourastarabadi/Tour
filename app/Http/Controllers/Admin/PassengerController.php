@@ -19,12 +19,10 @@ class PassengerController extends Controller
         return view('admin.passengers.index')->withItems($items);
     }
 
-
     public function create()
     {
         return view('admin.passengers.create');
     }
-
 
     public function store(PassengerRequest $request)
     {
@@ -44,12 +42,10 @@ class PassengerController extends Controller
         ]);
     }
 
-
     public function edit(Passenger $passenger)
     {
         return view('admin.passengers.edit')->withPassenger($passenger);
     }
-
 
     public function update(Request $request, Passenger $passenger)
     {
@@ -61,7 +57,6 @@ class PassengerController extends Controller
         ]);
     }
 
-
     public function destroy(Passenger $passenger)
     {
         $passenger->user->delete();
@@ -71,7 +66,6 @@ class PassengerController extends Controller
             'alert'   => 'danger',
         ]);
     }
-
 
     public function keyGenerate(Passenger $passenger){
         $pass = Str::random(10);

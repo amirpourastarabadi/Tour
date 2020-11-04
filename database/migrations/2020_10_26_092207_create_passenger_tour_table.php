@@ -13,14 +13,14 @@ class CreatePassengerTourTable extends Migration
 
             $table->foreignId('passenger_id')
                 ->references('id')
-                ->on('passengers');
+                ->on('passengers')
+                ->cascadeOnDelete();
 
             $table->foreignId('tour_id')
                 ->references('id')
                 ->on('tours')
                 ->cascadeOnDelete();
 
-            $table->unique(['passenger_id', 'tour_id']);
             $table->integer('count');
 
             $table->timestamps();

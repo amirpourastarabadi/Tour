@@ -20,42 +20,6 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('passengers', 'tour_admins'));
     }
 
-
-    public function create()
-    {
-        //
-    }
-
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
-    public function destroy($id)
-    {
-        //
-    }
-
     public function keyGenerate($id){
         $pass = Str::random(10);
         $profile = User::findOrFail($id);
