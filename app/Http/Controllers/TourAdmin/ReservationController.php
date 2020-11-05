@@ -5,11 +5,13 @@ namespace App\Http\Controllers\TourAdmin;
 use App\Events\CheckUser;
 use App\Events\PhoneVerification;
 use App\Http\Controllers\Controller;
+use App\Models\Passenger;
 use App\Models\Tour;
 use App\Models\TourAdmin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Predis\Client;
 
 class ReservationController extends Controller
@@ -75,6 +77,18 @@ class ReservationController extends Controller
 
         session('reservation.tour')->makeReservation(session()->get('reservation.user')->passenger, $count);
         return redirect(route('tourAdmin.reservation.show', session()->get('reservation.tour')));
+    }
+
+    public function destroy(Tour $tour, Passenger $passenger, $count){
+        $tour->filled_num -= $count;
+        $tour->save();
+        DB::table('passenger_tour')
+            ->where('tour_id', $tour->id)
+            ->where('passenger_id', $passenger->id)
+            ->delete();
+        return back()->withErrors(['delete'=>"{$passenger->user->last_name} reservation has been canceled"]);
+
+
     }
 
 

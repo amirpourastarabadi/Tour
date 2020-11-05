@@ -6,17 +6,18 @@
         <td>{{$passenger->tour($tour)->created_at}}</td>
         <td>{{$passenger->tour($tour)->count}}</td>
         <td class="td-actions">
-            @if($tour->hasCapacity())
-                <a href="{{ route('tourAdmin.reservation.destroy', $tour) }}" class="btn btn-danger"
-                   title="Cancel">
+            <form
+                action="{{route('tourAdmin.reservation.destroy', [
+    'tour' => $tour, 'passenger' => $passenger, 'count' => $passenger->tour($tour)->count
+    ])}}"
+                method="post" style="display: inline">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger"
+                        title="Cancel">
                     <i class="material-icons">cancel</i>
-                </a>
-            @else
-                <a href="" class="btn btn-dark"
-                   title="Full">
-                    <i class="material-icons">add</i>
-                </a>
-            @endif
+                </button>
+            </form>
             <a href="{{ route('tourAdmin.reservation.edit', $tour) }}" class="btn btn-info" title="Edit">
                 <i class="material-icons">edit</i>
             </a>

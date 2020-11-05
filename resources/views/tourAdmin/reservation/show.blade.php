@@ -1,6 +1,11 @@
 @extends('layouts.tourAdmin')
 
 @section('content')
+
+    @error('delete')
+    <div class="alert alert-danger">{{$message}}</div>
+    @enderror
+
     <div class="content">
         <div class="container-fluid">
             <div class="row">
