@@ -18,7 +18,9 @@
                     <i class="material-icons">cancel</i>
                 </button>
             </form>
-            <a href="{{ route('tourAdmin.reservation.edit', $tour) }}" class="btn btn-info" title="Edit">
+            <a href="{{ route('tourAdmin.reservation.edit', [
+    'tour' => $tour, 'passenger' => $passenger, 'count' => $passenger->tour($tour)->count
+    ])}}" class="btn btn-info" title="Edit">
                 <i class="material-icons">edit</i>
             </a>
         </td>

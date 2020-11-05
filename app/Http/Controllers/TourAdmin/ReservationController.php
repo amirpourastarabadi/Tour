@@ -32,7 +32,7 @@ class ReservationController extends Controller
 
     public function step1(Tour $tour)
     {
-        if(! $tour->hasCapacity()){
+        if (!$tour->hasCapacity()) {
             return back()->withErrors(['no_capacity' => "This tour has no capacity"]);
         }
         session()->forget('reservation');
@@ -68,26 +68,45 @@ class ReservationController extends Controller
         return view('tourAdmin.reservation.show', ["tour" => $reservation]);
     }
 
-    public function cancel(){
+    public function cancel()
+    {
         session()->flash('reservation');
         return redirect(route('tourAdmin.reservation.index'));
     }
 
-    public function confirm($count){
+    public function confirm($count)
+    {
 
         session('reservation.tour')->makeReservation(session()->get('reservation.user')->passenger, $count);
         return redirect(route('tourAdmin.reservation.show', session()->get('reservation.tour')));
     }
 
-    public function destroy(Tour $tour, Passenger $passenger, $count){
+    public function destroy(Tour $tour, Passenger $passenger, $count)
+    {
         $tour->filled_num -= $count;
         $tour->save();
         DB::table('passenger_tour')
             ->where('tour_id', $tour->id)
             ->where('passenger_id', $passenger->id)
             ->delete();
-        return back()->withErrors(['delete'=>"{$passenger->user->last_name} reservation has been canceled"]);
+        return redirect()->route('tourAdmin.reservation.show', $tour)->withErrors(['delete' => "{$passenger->user->last_name} reservation has been canceled"]);
 
+
+    }
+
+    public function edit(Tour $tour, Passenger $passenger, $count)
+    {
+        return view('tourAdmin.reservation.edit', [
+            'tour' => $tour,
+            'passenger' => $passenger,
+            'count' => $count
+        ]);
+    }
+
+    public function update(Tour $tour, Passenger $passenger)
+    {
+        $tour->updateCount($passenger, request()->get('count'));
+        return redirect(route('tourAdmin.reservation.show', $tour));
 
     }
 

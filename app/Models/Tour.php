@@ -87,4 +87,26 @@ class Tour extends Model
         $this->save();
 
     }
+
+    public function updateCount($passenger, $count)
+    {
+        $item = DB::table('passenger_tour')
+            ->where('tour_id', $this['id'])
+            ->where('passenger_id', $passenger->id)
+            ->first();
+        $this->filled_num -= $item->count;
+        $this->filled_num += $count;
+        $this->save();
+
+        DB::table('passenger_tour')
+            ->where('tour_id', $this['id'])
+            ->where('passenger_id', $passenger->id)
+            ->decrement('count', $item->count);
+
+        DB::table('passenger_tour')
+            ->where('tour_id', $this['id'])
+            ->where('passenger_id', $passenger->id)
+            ->increment('count', $count);
+
+    }
 }
