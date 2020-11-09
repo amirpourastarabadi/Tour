@@ -418,9 +418,10 @@
 
         function addRoomService()
         {
-            var room_service = "<div class=\"row\">\n" +
-                "                    <hr style=\"border-top: 1px dashed gray;\">\n" +
-                "                        <div class=\"col-10\">\n" +
+            var room_service = "<div>\n" +
+                "                    <hr style=\"border-top: 1px dashed gray;\">" +
+                "                    <div class=\"row container\">" +
+                "                        <div class=\"col-11\">\n" +
                 "                            <div class=\"row\">\n" +
                 "                                <div class=\"col-md-6\">\n" +
                 "                                    <div class=\"form-group\">\n" +
@@ -473,7 +474,8 @@
                 "                       <a onclick=\"deleteRow()\" class=\"col-1 mt-5 pt-1 remove\" style=\"cursor: pointer;\">\n" +
                 "                           <i class=\"material-icons text-danger\">delete</i>\n" +
                 "                       </a>\n" +
-                "                   </div>";
+                "                   </div>\n" +
+                "               </div>";
             $('.room_service').append(room_service);
         }
 
@@ -515,7 +517,7 @@
         {
             $(document).on('click', '.remove', function()
             {
-                $(this).parent('div').remove();
+                $(this).parents().eq(1).remove();
             });
         }
     </script>
