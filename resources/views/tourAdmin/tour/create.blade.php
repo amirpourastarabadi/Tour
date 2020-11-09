@@ -138,7 +138,7 @@
                 </div>
                 <div class="row container">
                     @component('components.form-field',['LABLE'=>__('tourAdmin.tourCreation.transportationService.company')
-                                , 'NAME' => 'transition_type[]', "TYPE"=>'text', 'ERROR' => 'transition_type'])
+                                , 'NAME' => 'company[]', "TYPE"=>'text', 'ERROR' => 'company'])
                     @endcomponent
                     @component('components.form-field',['LABLE'=>__('tourAdmin.tourCreation.transportationService.transition_service_price')
                                 , 'NAME' => 'transition_service_price[]', "TYPE"=>'text', 'ERROR' => 'transition_service_price'])

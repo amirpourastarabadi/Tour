@@ -8,6 +8,7 @@ use App\Models\Hotel;
 use App\Models\Tour;
 use App\Models\TourServices;
 use App\Models\TransportationServices;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,6 +31,7 @@ class TourController extends Controller
         $request['tour_admin_id'] = Auth::user()->id;
 
         $tour = Tour::create($request->all());
+//        dd($request->all());
 
         foreach ($request->service as $key => $service){
             $tourService['service'] = $service;
@@ -54,6 +56,8 @@ class TourController extends Controller
             $transportationService['destination_address'] = $request->destination_address[$key];
             $transportationService['departure_time'] = $request->departure_time[$key];
             $transportationService['arrival_time'] = $request->arrival_time[$key];
+            dd($a = Carbon::createFromFormat('Y-m-d H:i:s', $transportationService['arrival_time']));
+            dd($transportationService);
             $transportationService['conditions'] = $request->conditions[$key];
             $transportationService['percentage_reduction'] = $request->percentage_reduction[$key];
             $tour->transportationServices()->create($transportationService);
