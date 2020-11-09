@@ -9,11 +9,14 @@ class TransportationServices extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'tour_id',
         'vehicle',
         'transition_type',
         'company',
+        'transition_service_price',
         'departure_time',
         'arrival_time',
         'origin_address',
@@ -22,4 +25,8 @@ class TransportationServices extends Model
         'conditions',
         'percentage_reduction',
     ];
+
+    public function tour(){
+        return $this->belongsTo(Tour::class);
+    }
 }

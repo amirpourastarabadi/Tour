@@ -16,4 +16,8 @@ class Hotel extends Model
         'stars',
         'image',
     ];
+
+    public function tour(){
+        return $this->hasMany(Tour::class);
+    }
 }

@@ -23,6 +23,13 @@
                 </li>
 
                 <li class="nav-item active">
+                    <a class="nav-link" href="{{ route('tourAdmin.tour.create') }}">
+                        <i class="material-icons">add</i>
+                        <p>{{ __('tourAdmin.profile.create_tour') }}</p>
+                    </a>
+                </li>
+
+                <li class="nav-item active">
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <a class="nav-link" style="cursor: pointer" onclick="this.parentNode.submit();">
@@ -36,28 +43,7 @@
         </div>
     </div>
     <div class="main-panel">
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
-            <div class="container-fluid">
-                <div class="navbar-wrapper">
-                </div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="navbar-toggler-icon icon-bar"></span>
-                    <span class="navbar-toggler-icon icon-bar"></span>
-                    <span class="navbar-toggler-icon icon-bar"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end">
-                    <ul class="navbar-nav">
-
-                        <!-- your navbar here -->
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- End Navbar -->
-        <div class="content">
+        <div class="content" style="margin-top: 0px">
             <div class="container-fluid">
                 <!-- your content here -->
                 @if($result = session('result'))

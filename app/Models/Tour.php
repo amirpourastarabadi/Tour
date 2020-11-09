@@ -17,7 +17,8 @@ class Tour extends Model
         'start_at',
         'duration',
         'price',
-        'count',
+        'total_num',
+        'filled_num',
         'personal_certificates',
         'marriage_certificates',
     ];
@@ -25,5 +26,21 @@ class Tour extends Model
 
     public function passengers(){
         return $this->belongsToMany(Passenger::class);
+    }
+
+    public function tourServices(){
+        return $this->hasMany(TourServices::class);
+    }
+
+    public function roomServices(){
+        return $this->hasMany(RoomServices::class);
+    }
+
+    public function transportationServices(){
+        return $this->hasMany(TransportationServices::class);
+    }
+
+    public function hotel(){
+        return $this->belongsTo(Hotel::class);
     }
 }

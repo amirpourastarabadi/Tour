@@ -20,7 +20,7 @@ class CreateRoomServicesTable extends Migration
             $table->smallInteger('beds');
             $table->string('room_type', 100);
             $table->text('room_service');
-            $table->mediumInteger('service_price');
+            $table->mediumInteger('room_service_price');
         });
     }
 

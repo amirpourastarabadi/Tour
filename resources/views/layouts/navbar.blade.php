@@ -103,7 +103,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="material-icons">call</i></div>
                                     </div>
-                                    <input name="mobile_number" type="text" placeholder="{{ __('navbar.login.mobile') }}" class="form-control @error('mobile_number') is-invalid @enderror">
+                                    <input name="mobile_number" type="text" placeholder="{{ __('navbar.login.mobile') }}" value="{{ old('mobile_number') }}" class="form-control @error('mobile_number') is-invalid @enderror">
 
                                     @error('mobile_number')
                                         <span class="container text-danger text-small" role="alert">
@@ -142,7 +142,7 @@
 
 <!--Register modal-->
 <div class="modal fade" id="registerModal" tabindex="-1">
-    <div class="modal-dialog modal-login" style="width: 50%" role="document">
+    <div class="modal-dialog modal-login" style="width: 50%">
         <div class="modal-content">
             <div class="card card-signup card-plain">
                 <div class="modal-header">
@@ -183,7 +183,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text"><i class="material-icons">face</i></div>
                                 </div>
-                                <input name="first_name" type="text" placeholder="{{ __('navbar.register.first_name') }}" class="form-control @if($errors->passengerRegister->first('first_name')) is-invalid @endif">
+                                <input name="first_name" type="text" placeholder="{{ __('navbar.register.first_name') }}" value="{{ old('first_name') }}" class="form-control @if($errors->passengerRegister->first('first_name')) is-invalid @endif">
 
                                 @if($errors->passengerRegister->first('first_name'))
                                     <span class="container text-danger text-small" role="alert">
@@ -199,7 +199,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text"><i class="material-icons">face</i></div>
                                 </div>
-                                <input name="last_name" type="text" placeholder="{{ __('navbar.register.last_name') }}" class="form-control @if($errors->passengerRegister->first('last_name')) is-invalid @endif">
+                                <input name="last_name" type="text" placeholder="{{ __('navbar.register.last_name') }}" value="{{ old('last_name') }}" class="form-control @if($errors->passengerRegister->first('last_name')) is-invalid @endif">
 
                                 @if($errors->passengerRegister->first('last_name'))
                                     <span class="container text-danger text-small" role="alert">
@@ -216,7 +216,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="material-icons">call</i></div>
                                     </div>
-                                    <input name="mobile_number" type="text" placeholder="{{ __('navbar.login.mobile') }}" class="form-control @if($errors->passengerRegister->first('mobile_number')) is-invalid @endif">
+                                    <input name="mobile_number" type="text" placeholder="{{ __('navbar.login.mobile') }}" value="{{ old('mobile_number') }}" class="form-control @if($errors->passengerRegister->first('mobile_number')) is-invalid @endif">
 
                                     @if($errors->passengerRegister->first('mobile_number'))
                                         <span class="container text-danger text-small" role="alert">
@@ -275,7 +275,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="material-icons">face</i></div>
                                     </div>
-                                    <input name="first_name" type="text" placeholder="{{ __('navbar.register.first_name') }}" class="form-control @if($errors->tourAdminRegister->first('first_name')) is-invalid @endif">
+                                    <input name="first_name" id="ro" type="text" placeholder="{{ __('navbar.register.first_name') }}" value="{{ old('first_name') }}" class="form-control @if($errors->tourAdminRegister->first('first_name')) is-invalid @endif">
 
                                     @if($errors->tourAdminRegister->first('first_name'))
                                         <span class="container text-danger text-small" role="alert">
@@ -291,7 +291,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="material-icons">face</i></div>
                                     </div>
-                                    <input name="last_name" type="text" placeholder="{{ __('navbar.register.last_name') }}" class="form-control @if($errors->tourAdminRegister->first('last_name')) is-invalid @endif">
+                                    <input name="last_name" type="text" placeholder="{{ __('navbar.register.last_name') }}" value="{{ old('last_name') }}" class="form-control @if($errors->tourAdminRegister->first('last_name')) is-invalid @endif">
 
                                     @if($errors->tourAdminRegister->first('last_name'))
                                         <span class="container text-danger text-small" role="alert">
@@ -308,7 +308,7 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="material-icons">call</i></div>
                                         </div>
-                                        <input name="mobile_number" type="text" placeholder="{{ __('navbar.login.mobile') }}" class="form-control @if($errors->tourAdminRegister->first('mobile_number')) is-invalid @endif">
+                                        <input name="mobile_number" type="text" placeholder="{{ __('navbar.login.mobile') }}" value="{{ old('mobile_number') }}" class="form-control @if($errors->tourAdminRegister->first('mobile_number')) is-invalid @endif">
 
                                         @if($errors->tourAdminRegister->first('mobile_number'))
                                             <span class="container text-danger text-small" role="alert">
@@ -365,12 +365,14 @@
 @yield('main_content')
 @endif
 <!--   Core JS Files   -->
-<script src="{{asset('assets/js/core/jquery.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/js/core/popper.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/core/jquery.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/core/popper.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/core/bootstrap-material-design.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/core/bootstrap-material-design.min.js') }}" type="text/javascript"></script>
+<script src="{{asset('assets/js/plugins/bootstrap-selectpicker.js')}}"></script>
 
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="{{asset('assets/js/material-dashboard.min.js?v=2.1.2')}}" type="text/javascript"></script>
+<script src=" {{asset('assets/js/material-dashboard.min.js?v=2.1.2') }}" type="text/javascript"></script>
 
 <script type="text/javascript">
     @if($errors->any())
