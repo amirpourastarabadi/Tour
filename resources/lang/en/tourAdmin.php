@@ -11,7 +11,7 @@ return [
         'delete'            => 'delete',
         'cancel'            => 'Cancel',
         'back'              => 'Back',
-        'confirm_delete'    => 'Are you sure you want to delete :first_name :last_name ?',
+        'confirm_delete'    => 'Are you sure you want to delete Tour :origin to :destination hotel :hotel_name ?',
     ],
     'edit' => [
         'submit'            => 'Submit',
@@ -22,18 +22,15 @@ return [
             'cancel_completion'     => 'Are you sure you want to cancel register completion',
         ],
         'forbidden' => ':message is Forbidden',
-        'admin' => [
-            'delete'            => 'Delete Admin | Admin <strong>:first_name</strong> <strong>:last_name</strong> removed successfully.',
-            'update'            => 'Update Admin | Admin <strong>:first_name</strong> <strong>:last_name</strong> updated successfully.',
-            'update_admin'      => 'Update Admin | <strong>:first_name</strong> <strong>:last_name</strong> updated successfully.',
-            'create'            => 'Create Admin | Admin <strong>:first_name</strong> <strong>:last_name</strong> Created successfully. <br/> Password is <strong>:password</strong>',
-            'confirm_key'       => 'Are you sure you want to reset password of :first_name :last_name ?',
-            'confirm_edit'      => 'Are you sure you want to update details of :first_name :last_name ?',
-            'confirm_create'    => 'Are you sure you want to create an admin with this details? Password will generate automatically.',
-            'confirm_back'      => 'Are you sure you want to go to admins list?',
+        'tour' => [
+            'delete'            => 'Delete Tour | Tour <strong>:origin</strong> <strong>:destination</strong> removed successfully.',
+            'update'            => 'Update Tour | Tour <strong>:origin</strong> <strong>:destination</strong> updated successfully.',
+            'create'            => 'Create Tour | Tour <strong>:origin</strong> <strong>:destination</strong> Created successfully.',
+            'confirm_edit'      => 'Are you sure you want to update this tour details ?',
+            'confirm_create'    => 'Are you sure you want to create a tour with this details?',
+            'confirm_back'      => 'Are you sure you want to go to tours list?',
             'cancel_edit'       => 'Are you sure you want to cancel edit?',
-            'cancel_create'     => 'Are you sure you want to cancel create admin?',
-            'reset_password'    => 'New Password is <strong>:password</strong>',
+            'cancel_create'     => 'Are you sure you want to cancel create tour?',
         ],
         'passenger' => [
             'create' => 'Passenger <strong>:first_name</strong> <strong>:last_name</strong> Created successfully. <br/> Password is <strong>:password</strong>',
@@ -76,7 +73,7 @@ return [
             'next'                      => 'Next',
         ],
         'tourService' => [
-            'tour_service'          => 'Tour Service',
+            'tour_service'          => 'Tour Services',
             'tour_service_price'    => 'Tour Service Price $',
             'service'               => 'Services',
             'create_service'        => '+ Create New Service',
@@ -104,5 +101,18 @@ return [
             'percentage_reduction'      => 'Percentage Reduction',
             'create_transportation'     => '+ Create New Transportation Service',
         ],
+    ],
+    'tours_list' => [
+        'list' => 'Tours list',
+        'hotel_name' => 'Hotel Name',
+        'left' => 'Left Number',
+    ],
+    'show' => [
+        'header' => 'Tour Information',
+        'stars' => 'Hotel Stars',
+        'filled' => 'Reserved Number Of Tour',
+        'remain' => 'Remain Number Of Tour',
+        'edit' => 'Edit Tour',
+        'delete' => 'Delete Tour',
     ],
 ];

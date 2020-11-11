@@ -6,8 +6,9 @@
             <h4 class="card-title">{{ __('tourAdmin.tourCreation.tour.create') }}</h4>
         </div>
         <div class="card-body">
-        <form action="{{ route('tourAdmin.tour.store') }}" method="post">
-                @csrf
+        <form action="{{ route('tourAdmin.tour.update', $tour) }}" method="post">
+            @csrf
+            @method('PATCH')
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
@@ -16,7 +17,7 @@
                             <select name="hotel_id" class="form-control selectpicker col-9 @if($errors->tourCreation->first('hotel')) is-invalid @endif" data-style="btn btn-link">
                                 <option value=""></option>
                                 @foreach($hotels as $hotel)
-                                    <option value="{{ $hotel->id }}">
+                                    <option value="{{ $hotel->id }}" @if($hotel->id == $tour->hotel->id) selected @endif>
                                         {{ $hotel->name }}
                                     </option>
                                 @endforeach
@@ -36,67 +37,75 @@
                 </div>
             </div>
             <div class="row">
-                @component('components.tourAdmin.tour.form-field', [
+                @component('components.tourAdmin.tour.edit-field', [
                                 'LABEL'   => __('tourAdmin.tourCreation.tour.origin'),
                                 'NAME'    => 'origin',
                                 'TYPE'    => 'text',
+                                'FIELD'    => $tour->origin,
                                 ])
                 @endcomponent
 
-                @component('components.tourAdmin.tour.form-field', [
+                @component('components.tourAdmin.tour.edit-field', [
                                 'LABEL'   => __('tourAdmin.tourCreation.tour.destination'),
                                 'NAME'    => 'destination',
                                 'TYPE'    =>'text',
+                                'FIELD'    => $tour->destination,
                                 ])
                 @endcomponent
 
             </div>
             <div class="row">
 
-                @component('components.tourAdmin.tour.form-field', [
+                @component('components.tourAdmin.tour.edit-field', [
                                 'LABEL'    => __('tourAdmin.tourCreation.tour.start_at'),
                                 'NAME'     => 'start_at',
                                 'TYPE'     => 'date',
                                 'CLASS'    =>'',
+                                'FIELD'    => $tour->start_at,
                                 ])
                 @endcomponent
 
-                @component('components.tourAdmin.tour.form-field', [
+                @component('components.tourAdmin.tour.edit-field', [
                                 'LABEL'   => __('tourAdmin.tourCreation.tour.duration'),
                                 'NAME'    => 'duration',
                                 'TYPE'    => 'number',
+                                'FIELD'    => $tour->duration,
                                 ])
                 @endcomponent
 
             </div>
             <div class="row">
 
-                @component('components.tourAdmin.tour.form-field', [
+                @component('components.tourAdmin.tour.edit-field', [
                                 'LABEL'   => __('tourAdmin.tourCreation.tour.price'),
                                 'NAME'    => 'price',
                                 'TYPE'    => 'text',
+                                'FIELD'    => $tour->price,
                                 ])
                 @endcomponent
 
-                @component('components.tourAdmin.tour.form-field', [
+                @component('components.tourAdmin.tour.edit-field', [
                                 'LABEL'   => __('tourAdmin.tourCreation.tour.tour_num'),
                                 'NAME'    => 'total_num',
                                 'TYPE'    => 'number',
+                                'FIELD'    => $tour->total_num,
                                 ])
                 @endcomponent
 
             </div>
             <div class="row">
 
-                @component('components.tourAdmin.tour.form-select', [
+                @component('components.tourAdmin.tour.edit-select', [
                                 'LABEL'  => __('tourAdmin.tourCreation.tour.personal_certificates'),
                                 'NAME'   => 'personal_certificates',
+                                'CHECK'   => $tour->personal_certificates,
                                 ])
                 @endcomponent
 
-                @component('components.tourAdmin.tour.form-select', [
+                @component('components.tourAdmin.tour.edit-select', [
                                 'LABEL'  => __('tourAdmin.tourCreation.tour.marriage_certificates'),
                                 'NAME'   => 'marriage_certificates',
+                                'CHECK'   => $tour->marriage_certificates,
                                 ])
                 @endcomponent
 
@@ -109,25 +118,39 @@
                 {{ __('tourAdmin.tourCreation.tourService.tour_service') }}
             </h4>
             <div class="tour_service">
-                <div class="row container">
 
-                    @component('components.tourAdmin.tour.form-field', [
-                                    'LABEL'   => __('tourAdmin.tourCreation.tourService.service'),
-                                    'NAME'    => 'service[]',
-                                    'TYPE'    => 'text',
-                                    'ERROR'   => 'service',
-                                    ])
-                    @endcomponent
+                @foreach($tour->tourServices as $tourService)
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="row container">
 
-                    @component('components.tourAdmin.tour.form-field', [
-                                    'LABEL'    => __('tourAdmin.tourCreation.tourService.tour_service_price'),
-                                    'NAME'     => 'tour_service_price[]',
-                                    'TYPE'     => 'text',
-                                    'ERROR'    => 'tour_service_price',
-                                    ])
-                    @endcomponent
+                                @component('components.tourAdmin.tour.edit-field', [
+                                                'LABEL'   => __('tourAdmin.tourCreation.tourService.service'),
+                                                'NAME'    => 'service[]',
+                                                'TYPE'    => 'text',
+                                                'ERROR'   => 'service',
+                                                'FIELD'    => $tourService->service,
+                                                ])
+                                @endcomponent
 
-                </div>
+                                @component('components.tourAdmin.tour.edit-field', [
+                                                'LABEL'    => __('tourAdmin.tourCreation.tourService.tour_service_price'),
+                                                'NAME'     => 'tour_service_price[]',
+                                                'TYPE'     => 'text',
+                                                'ERROR'    => 'tour_service_price',
+                                                'FIELD'    => $tourService->tour_service_price,
+                                                ])
+                                @endcomponent
+                            </div>
+                        </div>
+                        @component('components.tourAdmin.tour.edit-delete', [
+                            'NAME' => 'delete_tour_services[]'
+                            ])
+                        @endcomponent
+                    </div>
+                    <hr style="border-top: 1px dashed gray;">
+
+                @endforeach
             </div>
             <div onclick="addService()" class="float-right mr-5 text-primary" style="cursor: pointer;">
                 {{ __('tourAdmin.tourCreation.tourService.create_service') }}
@@ -139,44 +162,61 @@
                 {{ __('tourAdmin.tourCreation.roomService.room_service') }}
             </h4>
             <div class="room_service">
-                <div class="row container">
 
-                    @component('components.tourAdmin.tour.form-field', [
-                                    'LABEL'    => __('tourAdmin.tourCreation.roomService.beds'),
-                                    'NAME'     => 'beds[]',
-                                    'TYPE'     => 'number',
-                                    'ERROR'    => 'beds',
-                                    ])
+            @foreach($tour->roomServices as $roomService)
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row container">
+
+                            @component('components.tourAdmin.tour.edit-field', [
+                                            'LABEL'    => __('tourAdmin.tourCreation.roomService.beds'),
+                                            'NAME'     => 'beds[]',
+                                            'TYPE'     => 'number',
+                                            'ERROR'    => 'beds',
+                                            'FIELD'    => $roomService->beds,
+                                            ])
+                            @endcomponent
+
+                            @component('components.tourAdmin.tour.edit-field', [
+                                            'LABEL'    => __('tourAdmin.tourCreation.roomService.room_type'),
+                                            'NAME'     => 'room_type[]',
+                                            'TYPE'     => 'text',
+                                            'ERROR'    => 'room_type',
+                                            'FIELD'    => $roomService->room_type,
+                                            ])
+                            @endcomponent
+
+                        </div>
+                        <div class="row container">
+
+                            @component('components.tourAdmin.tour.edit-field', [
+                                            'LABEL'  => __('tourAdmin.tourCreation.roomService.room_service'),
+                                            'NAME'   => 'room_service[]',
+                                            'TYPE'   => 'text',
+                                            'ERROR'  => 'room_service',
+                                            'FIELD'    => $roomService->room_service,
+                                            ])
+                            @endcomponent
+
+                            @component('components.tourAdmin.tour.edit-field', [
+                                            'LABEL'   => __('tourAdmin.tourCreation.roomService.room_service_price'),
+                                            'NAME'    => 'room_service_price[]',
+                                            'TYPE'    => 'text',
+                                            'ERROR'   => 'room_service_price',
+                                            'FIELD'    => $roomService->room_service_price,
+                                            ])
+                            @endcomponent
+
+                        </div>
+                    </div>
+                    @component('components.tourAdmin.tour.edit-delete', [
+                            'NAME' => 'delete_room_services[]'
+                            ])
                     @endcomponent
-
-                    @component('components.tourAdmin.tour.form-field', [
-                                    'LABEL'    => __('tourAdmin.tourCreation.roomService.room_type'),
-                                    'NAME'     => 'room_type[]',
-                                    'TYPE'     => 'text',
-                                    'ERROR'    => 'room_type',
-                                    ])
-                    @endcomponent
-
                 </div>
-                <div class="row container">
+                <hr style="border-top: 1px dashed gray;">
 
-                    @component('components.tourAdmin.tour.form-field', [
-                                    'LABEL'  => __('tourAdmin.tourCreation.roomService.room_service'),
-                                    'NAME'   => 'room_service[]',
-                                    'TYPE'   => 'text',
-                                    'ERROR'  => 'room_service',
-                                    ])
-                    @endcomponent
-
-                    @component('components.tourAdmin.tour.form-field', [
-                                    'LABEL'   => __('tourAdmin.tourCreation.roomService.room_service_price'),
-                                    'NAME'    => 'room_service_price[]',
-                                    'TYPE'    => 'text',
-                                    'ERROR'   => 'room_service_price',
-                                    ])
-                    @endcomponent
-
-                </div>
+            @endforeach
 
             </div>
             <div onclick="addRoomService()" class="float-right mr-5 text-primary" style="cursor: pointer;">
@@ -190,105 +230,129 @@
                 {{ __('tourAdmin.tourCreation.transportationService.transportation_service') }}
             </h4>
             <div class="transportation_service">
-                <div class="row container">
+            @foreach($tour->transportationServices as $transportationService)
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row container">
 
-                    @component('components.tourAdmin.tour.form-field', [
-                                    'LABEL'   => __('tourAdmin.tourCreation.transportationService.vehicle'),
-                                    'NAME'    => 'vehicle[]',
-                                    'TYPE'    => 'text',
-                                    'ERROR'   => 'vehicle',
-                                    ])
-                    @endcomponent
+                        @component('components.tourAdmin.tour.edit-field', [
+                                        'LABEL'   => __('tourAdmin.tourCreation.transportationService.vehicle'),
+                                        'NAME'    => 'vehicle[]',
+                                        'TYPE'    => 'text',
+                                        'ERROR'   => 'vehicle',
+                                        'FIELD'    => $transportationService->vehicle,
+                                        ])
+                        @endcomponent
 
-                    @component('components.tourAdmin.tour.form-field', [
-                                    'LABEL'   => __('tourAdmin.tourCreation.transportationService.transition_type'),
-                                    'NAME'    => 'transition_type[]',
-                                    'TYPE'    => 'text',
-                                    'ERROR'   => 'transition_type',
-                                    ])
-                    @endcomponent
+                        @component('components.tourAdmin.tour.edit-field', [
+                                        'LABEL'   => __('tourAdmin.tourCreation.transportationService.transition_type'),
+                                        'NAME'    => 'transition_type[]',
+                                        'TYPE'    => 'text',
+                                        'ERROR'   => 'transition_type',
+                                        'FIELD'    => $transportationService->transition_type,
+                                        ])
+                        @endcomponent
 
-                </div>
-                <div class="row container">
+                    </div>
+                    <div class="row container">
 
-                    @component('components.tourAdmin.tour.form-field', [
-                                    'LABEL'   => __('tourAdmin.tourCreation.transportationService.company'),
-                                    'NAME'    => 'company[]',
-                                    'TYPE'    => 'text',
-                                    'ERROR'   => 'company',
-                                    ])
-                    @endcomponent
+                        @component('components.tourAdmin.tour.edit-field', [
+                                        'LABEL'   => __('tourAdmin.tourCreation.transportationService.company'),
+                                        'NAME'    => 'company[]',
+                                        'TYPE'    => 'text',
+                                        'ERROR'   => 'company',
+                                        'FIELD'    => $transportationService->company,
+                                        ])
+                        @endcomponent
 
-                    @component('components.tourAdmin.tour.form-field', [
-                                    'LABEL'   => __('tourAdmin.tourCreation.transportationService.transition_service_price'),
-                                    'NAME'    => 'transition_service_price[]',
-                                    'TYPE'    => 'text',
-                                    'ERROR'   => 'transition_service_price',
-                                    ])
-                    @endcomponent
+                        @component('components.tourAdmin.tour.edit-field', [
+                                        'LABEL'   => __('tourAdmin.tourCreation.transportationService.transition_service_price'),
+                                        'NAME'    => 'transition_service_price[]',
+                                        'TYPE'    => 'text',
+                                        'ERROR'   => 'transition_service_price',
+                                        'FIELD'    => $transportationService->transition_service_price,
+                                        ])
+                        @endcomponent
 
-                </div>
+                    </div>
 
-                <div class="row container">
+                    <div class="row container">
 
-                    @component('components.tourAdmin.tour.form-field', [
-                                    'LABEL'     => __('tourAdmin.tourCreation.transportationService.origin_address'),
-                                    'NAME'      => 'origin_address[]',
-                                    'TYPE'      => 'text',
-                                    'ERROR'     => 'origin_address',
-                                    ])
-                    @endcomponent
+                        @component('components.tourAdmin.tour.edit-field', [
+                                        'LABEL'     => __('tourAdmin.tourCreation.transportationService.origin_address'),
+                                        'NAME'      => 'origin_address[]',
+                                        'TYPE'      => 'text',
+                                        'ERROR'     => 'origin_address',
+                                        'FIELD'    => $transportationService->origin_address,
+                                        ])
+                        @endcomponent
 
-                    @component('components.tourAdmin.tour.form-field', [
-                                    'LABEL'     => __('tourAdmin.tourCreation.transportationService.destination_address'),
-                                    'NAME'      => 'destination_address[]',
-                                    'TYPE'      => 'text',
-                                    'ERROR'     => 'destination_address',
-                                    ])
-                    @endcomponent
+                        @component('components.tourAdmin.tour.edit-field', [
+                                        'LABEL'     => __('tourAdmin.tourCreation.transportationService.destination_address'),
+                                        'NAME'      => 'destination_address[]',
+                                        'TYPE'      => 'text',
+                                        'ERROR'     => 'destination_address',
+                                        'FIELD'    => $transportationService->destination_address,
+                                        ])
+                        @endcomponent
 
-                </div>
+                    </div>
 
-                <div class="row container">
+                    <div class="row container">
 
-                    @component('components.tourAdmin.tour.form-field', [
-                                    'LABEL'     => __('tourAdmin.tourCreation.transportationService.departure_time'),
-                                    'NAME'      => 'departure_time[]',
-                                    'TYPE'      => 'datetime-local',
-                                    'ERROR'     => 'departure_time',
-                                    'CLASS'     => ''
-                                    ])
-                    @endcomponent
+                        @component('components.tourAdmin.tour.edit-field', [
+                                        'LABEL'     => __('tourAdmin.tourCreation.transportationService.departure_time'),
+                                        'NAME'      => 'departure_time[]',
+                                        'TYPE'      => 'datetime-local',
+                                        'ERROR'     => 'departure_time',
+                                        'CLASS'     => '',
+                                        'FIELD'    => $transportationService->departure_time,
+                                        ])
+                        @endcomponent
 
-                    @component('components.tourAdmin.tour.form-field', [
-                                    'LABEL'     => __('tourAdmin.tourCreation.transportationService.arrival_time'),
-                                    'NAME'      => 'arrival_time[]',
-                                    'TYPE'      => 'datetime-local',
-                                    'ERROR'     => 'arrival_time',
-                                    'CLASS'     => ''
-                                    ])
-                    @endcomponent
+                        @component('components.tourAdmin.tour.edit-field', [
+                                        'LABEL'     => __('tourAdmin.tourCreation.transportationService.arrival_time'),
+                                        'NAME'      => 'arrival_time[]',
+                                        'TYPE'      => 'datetime-local',
+                                        'ERROR'     => 'arrival_time',
+                                        'CLASS'     => '',
+                                        'FIELD'    => $transportationService->arrival_time,
+                                        ])
+                        @endcomponent
 
-                </div>
-                <div class="row container">
+                    </div>
+                    <div class="row container">
 
-                    @component('components.tourAdmin.tour.form-field', [
+                        @component('components.tourAdmin.tour.edit-field', [
                                     'LABEL'     => __('tourAdmin.tourCreation.transportationService.conditions'),
                                     'NAME'      => 'conditions[]',
                                     'TYPE'      => 'text',
-                                    'ERROR'     => 'conditions'
+                                    'ERROR'     => 'conditions',
+                                    'FIELD'    => $transportationService->conditions,
                                     ])
-                    @endcomponent
+                        @endcomponent
 
-                    @component('components.tourAdmin.tour.form-field', [
+                        @component('components.tourAdmin.tour.edit-field', [
                                     'LABEL'     => __('tourAdmin.tourCreation.transportationService.percentage_reduction'),
                                     'NAME'      => 'percentage_reduction[]',
                                     'TYPE'      => 'number',
-                                    'ERROR'     => 'percentage_reduction'
+                                    'ERROR'     => 'percentage_reduction',
+                                    'FIELD'    => $transportationService->percentage_reduction,
                                     ])
-                    @endcomponent
+                        @endcomponent
 
+                    </div>
                 </div>
+                @component('components.tourAdmin.tour.edit-delete', [
+                            'NAME' => 'delete_transportation_services[]'
+                            ])
+                @endcomponent
+            </div>
+
+            <hr style="border-top: 1px dashed gray;">
+
+            @endforeach
+
             </div>
             <div onclick="addTransportationService()" class="float-right mr-5 text-primary" style="cursor: pointer;">
                 {{ __('tourAdmin.tourCreation.transportationService.create_transportation') }}
@@ -297,9 +361,9 @@
             <br/><br/>
 
             <a href="{{ route('tourAdmin.tour.index') }}" type="submit" class="btn btn-danger pull-right"
-               onclick="return confirm('{{ __('tourAdmin.alerts.tour.cancel_create') }}');">{{ __('tourAdmin.list.cancel') }}</a>
+               onclick="return confirm('{{ __('tourAdmin.alerts.tour.cancel_edit') }}');">{{ __('tourAdmin.list.cancel') }}</a>
             <button type="submit" class="btn btn-success float-right"
-               onclick="return confirm('{{ __('tourAdmin.alerts.tour.confirm_create') }}');">{{ __('tourAdmin.edit.submit') }}</button>
+                    onclick="return confirm('{{ __('tourAdmin.alerts.tour.confirm_edit') }}');">{{ __('tourAdmin.edit.submit') }}</button>
         </form>
     </div>
 @endsection
@@ -308,7 +372,7 @@
     <script>
     function addService() {
         var tour_service = "<div>" +
-        "               <hr style=\"border-top: 1px dashed gray;\">\n" +
+        "               <hr style=\"border-top: 1px solid pink;\">\n" +
         "                <div class=\"row container\">\n" +
         "                    <div class=\"col-md-6\">\n" +
         "                        <div class=\"form-group\">\n" +
@@ -332,6 +396,7 @@
         "                            @endif\n" +
         "                        </div>\n" +
         "                    </div>\n" +
+        "                   <input type=\"text\" hidden value=\"1\" name=\"add_tour_service[]\">\n" +
         "                    <a onclick=\"deleteRow()\" class=\"col-1 mt-5 pt-1 remove\" style=\"cursor: pointer;\">\n" +
         "                        <i class=\"material-icons text-danger\">delete</i>\n" +
         "                    </a>" +
@@ -343,7 +408,7 @@
 
     function addRoomService() {
         var room_service = "<div>\n" +
-        "                    <hr style=\"border-top: 1px dashed gray;\">" +
+        "                    <hr style=\"border-top: 1px solid pink;\">" +
         "                    <div class=\"row container\">" +
         "                        <div class=\"col-11\">\n" +
         "                            <div class=\"row\">\n" +
@@ -395,6 +460,7 @@
         "                             </div>\n" +
         "                         </div>\n" +
         "                       </div>\n" +
+        "                   <input type=\"text\" hidden value=\"1\" name=\"add_room_service[]\">\n" +
         "                       <a onclick=\"deleteRow()\" class=\"col-1 mt-5 pt-1 remove\" style=\"cursor: pointer;\">\n" +
         "                           <i class=\"material-icons text-danger\">delete</i>\n" +
         "                       </a>\n" +
@@ -405,7 +471,7 @@
 
     function addTransportationService() {
         var transportation_service = "<div>\n" +
-            "                    <hr style=\"border-top: 1px dashed gray;\">\n" +
+            "                    <hr style=\"border-top: 1px solid pink;\">\n" +
             "\n" +
             "                    <div class=\"row container\">\n" +
             "                        <div class=\"col-11\">\n" +
@@ -547,6 +613,7 @@
             "                        </div>\n" +
             "                    </div>\n" +
             "                        </div>\n" +
+            "                   <input type=\"text\" hidden value=\"1\" name=\"add_transportation_service[]\">\n" +
             "                        <a onclick=\"deleteRow()\" class=\"col-1 mt-5 pt-5 remove\" style=\"cursor: pointer;\">\n" +
             "                            <i class=\"material-icons text-danger\">delete</i>\n" +
             "                        </a>\n" +

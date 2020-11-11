@@ -23,6 +23,13 @@
                 </li>
 
                 <li class="nav-item active">
+                    <a class="nav-link" href="{{ route('tourAdmin.tour.index') }}">
+                        <i class="material-icons">commute</i>
+                        <p>{{ __('tourAdmin.tours_list.list') }}</p>
+                    </a>
+                </li>
+
+                <li class="nav-item active">
                     <a class="nav-link" href="{{ route('tourAdmin.tour.create') }}">
                         <i class="material-icons">add</i>
                         <p>{{ __('tourAdmin.profile.create_tour') }}</p>
