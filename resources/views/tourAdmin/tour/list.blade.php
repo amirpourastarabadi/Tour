@@ -29,14 +29,12 @@
 
                 <td class="td-actions text-center d-flex justify-content-between">
                     <form action="{{ route('tourAdmin.tour.show', $tour) }}" method="GET">
-                        @csrf
                         <button type="submit" rel="tooltip" class="btn btn-info" title="{{ __('tourAdmin.list.info') }}">
                             <i class="material-icons">commute</i>
                         </button>
                     </form>
 
                     <form action="{{ route('tourAdmin.tour.edit', $tour) }}" method="GET">
-                        @csrf
                         <button type="submit" rel="tooltip" class="btn btn-success" title="{{ __('tourAdmin.list.edit') }}">
                             <i class="material-icons">edit</i>
                         </button>
