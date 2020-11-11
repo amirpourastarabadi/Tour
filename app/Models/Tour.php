@@ -122,7 +122,4 @@ class Tour extends Model
         return $this->hasMany(TransportationServices::class);
     }
 
-    public function hotel(){
-        return $this->belongsTo(Hotel::class);
-    }
 }

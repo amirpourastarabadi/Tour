@@ -30,16 +30,22 @@ class TourController extends Controller
 
         $tour = Tour::create($request->all());
 
-        foreach ($request->service as $key => $service){
-            $this->createTourServices($request, $tour, $key, $service);
+        if (isset($request->service)) {
+            foreach ($request->service as $key => $service) {
+                $this->createTourServices($request, $tour, $key, $service);
+            }
         }
 
-        foreach ($request->beds as $key => $beds){
-            $this->createRoomServices($request, $tour, $key, $beds);
+        if (isset($request->beds)) {
+            foreach ($request->beds as $key => $beds) {
+                $this->createRoomServices($request, $tour, $key, $beds);
+            }
         }
 
-        foreach ($request->vehicle as $key => $vehicle){
-            $this->createTransportationServices($request, $tour, $key, $vehicle);
+        if (isset($request->vehicle)) {
+            foreach ($request->vehicle as $key => $vehicle) {
+                $this->createTransportationServices($request, $tour, $key, $vehicle);
+            }
         }
 
         return redirect()->route('tourAdmin.tour.index')->withResult([
@@ -87,47 +93,51 @@ class TourController extends Controller
                 }
             }
         }
-
-        foreach ($request->delete_tour_services as $key => $delete_tour_service){
-            if ($delete_tour_service == 1){
-                $tour->tourServices[$key]->delete();
-            }else{
-                $tour->tourServices[$key]->update($request->only([
-                    'service[' . $key . ']',
-                    'tour_service_price[' . $key . ']',
-                ]));
+        if (isset($request->delete_tour_services)) {
+            foreach ($request->delete_tour_services as $key => $delete_tour_service) {
+                if ($delete_tour_service == 1) {
+                    $tour->tourServices[$key]->delete();
+                } else {
+                    $tour->tourServices[$key]->update($request->only([
+                        'service[' . $key . ']',
+                        'tour_service_price[' . $key . ']',
+                    ]));
+                }
+            }
+        }
+        if (isset($request->delete_room_services)) {
+            foreach ($request->delete_room_services as $key => $delete_room_service) {
+                if ($delete_room_service == 1) {
+                    $tour->roomServices[$key]->delete();
+                } else {
+                    $tour->roomServices[$key]->update($request->only([
+                        'beds[' . $key . ']',
+                        'room_type[' . $key . ']',
+                        'room_service[' . $key . ']',
+                        'room_service_price[' . $key . ']',
+                    ]));
+                }
             }
         }
 
-        foreach ($request->delete_room_services as $key => $delete_room_service){
-            if ($delete_room_service == 1){
-                $tour->roomServices[$key]->delete();
-            }else{
-                $tour->roomServices[$key]->update($request->only([
-                    'beds[' . $key . ']',
-                    'room_type[' . $key . ']',
-                    'room_service[' . $key . ']',
-                    'room_service_price[' . $key . ']',
-                ]));
-            }
-        }
-
-        foreach ($request->delete_transportation_services as $key => $delete_transportation_service){
-            if ($delete_transportation_service == 1){
-                $tour->transportationServices[$key]->delete();
-            }else{
-                $tour->transportationServices[$key]->update($request->only([
-                    'vehicle[' . $key . ']',
-                    'transition_type[' . $key . ']',
-                    'company[' . $key . ']',
-                    'transition_service_price[' . $key . ']',
-                    'origin_address[' . $key . ']',
-                    'destination_address[' . $key . ']',
-                    'departure_time[' . $key . ']',
-                    'arrival_time[' . $key . ']',
-                    'conditions[' . $key . ']',
-                    'percentage_reduction[' . $key . ']',
-                ]));
+        if (isset($request->delete_transportation_services)) {
+            foreach ($request->delete_transportation_services as $key => $delete_transportation_service) {
+                if ($delete_transportation_service == 1) {
+                    $tour->transportationServices[$key]->delete();
+                } else {
+                    $tour->transportationServices[$key]->update($request->only([
+                        'vehicle[' . $key . ']',
+                        'transition_type[' . $key . ']',
+                        'company[' . $key . ']',
+                        'transition_service_price[' . $key . ']',
+                        'origin_address[' . $key . ']',
+                        'destination_address[' . $key . ']',
+                        'departure_time[' . $key . ']',
+                        'arrival_time[' . $key . ']',
+                        'conditions[' . $key . ']',
+                        'percentage_reduction[' . $key . ']',
+                    ]));
+                }
             }
         }
 

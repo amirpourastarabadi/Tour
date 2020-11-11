@@ -17,7 +17,7 @@ class TourFactory extends Factory
     public function __construct($count = null, ?Collection $states = null, ?Collection $has = null, ?Collection $for = null, ?Collection $afterMaking = null, ?Collection $afterCreating = null, $connection = null)
     {
         parent::__construct($count, $states, $has, $for, $afterMaking, $afterCreating, $connection);
-        $this->tourAdmins = TourAdmin::count();
+        $this->tourAdmins = TourAdmin::select('user_id')->get()->pluck('user_id');
         $this->hotels = Hotel::count();
     }
 
@@ -25,7 +25,7 @@ class TourFactory extends Factory
     {
         return [
             'hotel_id' => rand(1, $this->hotels),
-            'tour_admin_id' => rand(1, $this->tourAdmins),
+            'tour_admin_id' => $this->tourAdmins->toArray()[array_rand($this->tourAdmins->toArray())],
             'origin' => $this->faker->city,
             'destination' => $this->faker->city,
             'start_at' => $this->faker->date(),

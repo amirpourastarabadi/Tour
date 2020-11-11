@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\TourAdmin;
 
 use App\Events\CheckUser;
-use App\Events\PhoneVerification;
 use App\Http\Controllers\Controller;
 use App\Models\Passenger;
 use App\Models\Tour;
@@ -12,21 +11,15 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Predis\Client;
 
 class ReservationController extends Controller
 {
     private $client;
 
-    public function __construct()
-    {
-        $this->client = new Client();
-    }
-
     public function index()
     {
         $agency = TourAdmin::where('user_id', Auth::user()->id)->get()->first();
-        $tours = Tour::where('tour_admin_id', $agency->id)->with('hotel')->latest('id')->paginate(7);
+        $tours = Tour::where('tour_admin_id', $agency->user_id)->with('hotel')->latest('id')->paginate(7);
         return view('tourAdmin.reservation.index', compact('tours'));
     }
 

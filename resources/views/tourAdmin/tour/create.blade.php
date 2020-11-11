@@ -313,10 +313,10 @@
         "                    <div class=\"col-md-6\">\n" +
         "                        <div class=\"form-group\">\n" +
         "                            <label class=\"bmd-label-floating\">{{ __('tourAdmin.tourCreation.tourService.service') }}</label>\n" +
-        "                            <input name=\"service[]\" type=\"text\" class=\"form-control @if($errors->tourCreation->first('service[]')) is-invalid @endif\">\n" +
-        "                            @if($errors->tourCreation->first('service[]'))\n" +
+        "                            <input name=\"service[]\" required type=\"text\" class=\"form-control @if($errors->tourCreation->first('service')) is-invalid @endif\">\n" +
+        "                            @if($errors->tourCreation->first('service'))\n" +
         "                                <span class=\"container text-danger text-small\" role=\"alert\">\n" +
-        "                                    <strong>{{ $errors->tourCreation->first('service[]') }}</strong>\n" +
+        "                                    <strong>{{ $errors->tourCreation->first('service') }}</strong>\n" +
         "                                </span>\n" +
         "                            @endif\n" +
         "                        </div>\n" +
@@ -324,10 +324,10 @@
         "                    <div class=\"col-md-5\">\n" +
         "                        <div class=\"form-group\">\n" +
         "                            <label class=\"bmd-label-floating\">{{ __('tourAdmin.tourCreation.tourService.tour_service_price') }}</label>\n" +
-        "                            <input name=\"tour_service_price[]\" type=\"text\" class=\"form-control @if($errors->tourCreation->first('tour_service_price[]')) is-invalid @endif\">\n" +
-        "                            @if($errors->tourCreation->first('tour_service_price[]'))\n" +
+        "                            <input name=\"tour_service_price[]\" required type=\"text\" class=\"form-control @if($errors->tourCreation->first('tour_service_price')) is-invalid @endif\">\n" +
+        "                            @if($errors->tourCreation->first('tour_service_price'))\n" +
         "                                <span class=\"container text-danger text-small\" role=\"alert\">\n" +
-        "                                    <strong>{{ $errors->tourCreation->first('tour_service_price[]') }}</strong>\n" +
+        "                                    <strong>{{ $errors->tourCreation->first('tour_service_price') }}</strong>\n" +
         "                                </span>\n" +
         "                            @endif\n" +
         "                        </div>\n" +
@@ -350,7 +350,7 @@
         "                                <div class=\"col-md-6\">\n" +
         "                                    <div class=\"form-group\">\n" +
         "                                        <label class=\"bmd-label-floating\">{{ __('tourAdmin.tourCreation.roomService.beds') }}</label>\n" +
-        "                                        <input name=\"beds[]\" type=\"number\" class=\"form-control @if($errors->tourCreation->first('beds')) is-invalid @endif\">\n" +
+        "                                        <input name=\"beds[]\" required type=\"number\" class=\"form-control @if($errors->tourCreation->first('beds')) is-invalid @endif\">\n" +
         "                                            @if($errors->tourCreation->first('beds'))\n" +
         "                                                <span class=\"container text-danger text-small\">\n" +
         "                                                    <strong>{{ $errors->tourCreation->first('beds') }}</strong>\n" +
@@ -361,7 +361,7 @@
         "                            <div class=\"col-md-6\">\n" +
         "                            <div class=\"form-group\">\n" +
         "                                    <label class=\"bmd-label-floating\">{{ __('tourAdmin.tourCreation.roomService.room_type') }}</label>\n" +
-        "                                    <input name=\"room_type[]\" type=\"text\" class=\"form-control @if($errors->tourCreation->first('room_type')) is-invalid @endif\">\n" +
+        "                                    <input name=\"room_type[]\" required type=\"text\" class=\"form-control @if($errors->tourCreation->first('room_type')) is-invalid @endif\">\n" +
         "                                    @if($errors->tourCreation->first('room_type'))\n" +
         "                                        <span class=\"container text-danger text-small\" role=\"alert\">\n" +
         "                                            <strong>{{ $errors->tourCreation->first('room_type') }}</strong>\n" +
@@ -374,7 +374,7 @@
         "                            <div class=\"col-md-6\">\n" +
         "                                 <div class=\"form-group\">\n" +
         "                                    <label class=\"bmd-label-floating\">{{ __('tourAdmin.tourCreation.roomService.room_service') }}</label>\n" +
-        "                                     <input name=\"room_service[]\" type=\"text\" class=\"form-control @if($errors->tourCreation->first('room_service')) is-invalid @endif\">\n" +
+        "                                     <input name=\"room_service[]\" required type=\"text\" class=\"form-control @if($errors->tourCreation->first('room_service')) is-invalid @endif\">\n" +
         "                                     @if($errors->tourCreation->first('room_service'))\n" +
         "                                         <span class=\"container text-danger text-small\" role=\"alert\">\n" +
         "                                             <strong>{{ $errors->tourCreation->first('room_service') }}</strong>\n" +
@@ -385,7 +385,7 @@
         "                             <div class=\"col-md-6\">\n" +
         "                                 <div class=\"form-group\">\n" +
         "                                     <label class=\"bmd-label-floating\">{{ __('tourAdmin.tourCreation.roomService.room_service_price') }}</label>\n" +
-        "                                     <input name=\"room_service_price[]\" type=\"text\" class=\"form-control @if($errors->tourCreation->first('room_service_price')) is-invalid @endif\">\n" +
+        "                                     <input name=\"room_service_price[]\" required type=\"text\" class=\"form-control @if($errors->tourCreation->first('room_service_price')) is-invalid @endif\">\n" +
         "                                     @if($errors->tourCreation->first('room_service_price'))\n" +
         "                                         <span class=\"container text-danger text-small\" role=\"alert\">\n" +
         "                                             <strong>{{ $errors->tourCreation->first('room_service_price') }}</strong>\n" +
@@ -415,7 +415,7 @@
             "                        <div class=\"col-md-6\">\n" +
             "                            <div class=\"form-group\">\n" +
             "                                <label class=\"bmd-label-floating\">{{ __('tourAdmin.tourCreation.transportationService.vehicle') }}</label>\n" +
-            "                                <input name=\"vehicle[]\" type=\"text\" class=\"form-control @if($errors->tourCreation->first('vehicle')) is-invalid @endif\" value=\"{{ old('vehicle') }}\">\n" +
+            "                                <input name=\"vehicle[]\" required type=\"text\" class=\"form-control @if($errors->tourCreation->first('vehicle')) is-invalid @endif\">\n" +
             "                                @if($errors->tourCreation->first('vehicle'))\n" +
             "                                    <span class=\"container text-danger text-small\" role=\"alert\">\n" +
             "                                        <strong>{{ $errors->tourCreation->first('vehicle') }}</strong>\n" +
@@ -427,7 +427,7 @@
             "                        <div class=\"col-md-6\">\n" +
             "                            <div class=\"form-group\">\n" +
             "                                <label class=\"bmd-label-floating\">{{ __('tourAdmin.tourCreation.transportationService.transition_type') }}</label>\n" +
-            "                                <input name=\"transition_type[]\" type=\"text\" class=\"form-control @if($errors->tourCreation->first('transition_type')) is-invalid @endif\" value=\"{{ old('transition_type') }}\">\n" +
+            "                                <input name=\"transition_type[]\" required type=\"text\" class=\"form-control @if($errors->tourCreation->first('transition_type')) is-invalid @endif\">\n" +
             "                                @if($errors->tourCreation->first('transition_type'))\n" +
             "                                    <span class=\"container text-danger text-small\" role=\"alert\">\n" +
             "                                        <strong>{{ $errors->tourCreation->first('transition_type') }}</strong>\n" +
@@ -442,7 +442,7 @@
             "                        <div class=\"col-md-6\">\n" +
             "                            <div class=\"form-group\">\n" +
             "                                <label class=\"bmd-label-floating\">{{ __('tourAdmin.tourCreation.transportationService.company') }}</label>\n" +
-            "                                <input name=\"company[]\" type=\"text\" class=\"form-control @if($errors->tourCreation->first('company')) is-invalid @endif\" value=\"{{ old('company') }}\">\n" +
+            "                                <input name=\"company[]\" required type=\"text\" class=\"form-control @if($errors->tourCreation->first('company')) is-invalid @endif\">\n" +
             "                                @if($errors->tourCreation->first('company'))\n" +
             "                                    <span class=\"container text-danger text-small\" role=\"alert\">\n" +
             "                                        <strong>{{ $errors->tourCreation->first('company') }}</strong>\n" +
@@ -454,7 +454,7 @@
             "                        <div class=\"col-md-6\">\n" +
             "                            <div class=\"form-group\">\n" +
             "                                <label class=\"bmd-label-floating\">{{ __('tourAdmin.tourCreation.transportationService.transition_service_price') }}</label>\n" +
-            "                                <input name=\"transition_service_price[]\" type=\"text\" class=\"form-control @if($errors->tourCreation->first('transition_service_price')) is-invalid @endif\" value=\"{{ old('transition_service_price') }}\">\n" +
+            "                                <input name=\"transition_service_price[]\" required type=\"text\" class=\"form-control @if($errors->tourCreation->first('transition_service_price')) is-invalid @endif\">\n" +
             "                                @if($errors->tourCreation->first('transition_service_price'))\n" +
             "                                    <span class=\"container text-danger text-small\" role=\"alert\">\n" +
             "                                        <strong>{{ $errors->tourCreation->first('transition_service_price') }}</strong>\n" +
@@ -470,7 +470,7 @@
             "                        <div class=\"col-md-6\">\n" +
             "                            <div class=\"form-group\">\n" +
             "                                <label class=\"bmd-label-floating\">{{ __('tourAdmin.tourCreation.transportationService.origin_address') }}</label>\n" +
-            "                                <input name=\"origin_address[]\" type=\"text\" class=\"form-control @if($errors->tourCreation->first('origin_address')) is-invalid @endif\" value=\"{{ old('origin_address') }}\">\n" +
+            "                                <input name=\"origin_address[]\" required type=\"text\" class=\"form-control @if($errors->tourCreation->first('origin_address')) is-invalid @endif\">\n" +
             "                                @if($errors->tourCreation->first('origin_address'))\n" +
             "                                    <span class=\"container text-danger text-small\" role=\"alert\">\n" +
             "                                        <strong>{{ $errors->tourCreation->first('origin_address') }}</strong>\n" +
@@ -482,7 +482,7 @@
             "                        <div class=\"col-md-6\">\n" +
             "                            <div class=\"form-group\">\n" +
             "                                <label class=\"bmd-label-floating\">{{ __('tourAdmin.tourCreation.transportationService.destination_address') }}</label>\n" +
-            "                                <input name=\"destination_address[]\" type=\"text\" class=\"form-control @if($errors->tourCreation->first('destination_address')) is-invalid @endif\" value=\"{{ old('destination_address') }}\">\n" +
+            "                                <input name=\"destination_address[]\" required type=\"text\" class=\"form-control @if($errors->tourCreation->first('destination_address')) is-invalid @endif\">\n" +
             "                                @if($errors->tourCreation->first('destination_address'))\n" +
             "                                    <span class=\"container text-danger text-small\" role=\"alert\">\n" +
             "                                        <strong>{{ $errors->tourCreation->first('destination_address') }}</strong>\n" +
@@ -498,7 +498,7 @@
             "                        <div class=\"col-md-6\">\n" +
             "                            <div class=\"form-group\">\n" +
             "                                <label class=\"bmd-label\">{{ __('tourAdmin.tourCreation.transportationService.departure_time') }}</label>\n" +
-            "                                <input name=\"departure_time[]\" type=\"datetime-local\" class=\"form-control @if($errors->tourCreation->first('departure_time')) is-invalid @endif\" value=\"{{ old('departure_time') }}\">\n" +
+            "                                <input name=\"departure_time[]\" required type=\"datetime-local\" class=\"form-control @if($errors->tourCreation->first('departure_time')) is-invalid @endif\">\n" +
             "                                @if($errors->tourCreation->first('departure_time'))\n" +
             "                                    <span class=\"container text-danger text-small\" role=\"alert\">\n" +
             "                                       <strong>{{ $errors->tourCreation->first('departure_time') }}</strong>\n" +
@@ -510,7 +510,7 @@
             "                        <div class=\"col-md-6\">\n" +
             "                            <div class=\"form-group\">\n" +
             "                                <label class=\"bmd-label\">{{ __('tourAdmin.tourCreation.transportationService.arrival_time') }}</label>\n" +
-            "                                <input name=\"arrival_time[]\" type=\"datetime-local\" class=\"form-control @if($errors->tourCreation->first('arrival_time')) is-invalid @endif\" value=\"{{ old('arrival_time') }}\">\n" +
+            "                                <input name=\"arrival_time[]\" required type=\"datetime-local\" class=\"form-control @if($errors->tourCreation->first('arrival_time')) is-invalid @endif\">\n" +
             "                                @if($errors->tourCreation->first('arrival_time'))\n" +
             "                                    <span class=\"container text-danger text-small\" role=\"alert\">\n" +
             "                                        <strong>{{ $errors->tourCreation->first('arrival_time') }}</strong>\n" +
@@ -525,7 +525,7 @@
             "                        <div class=\"col-md-6\">\n" +
             "                            <div class=\"form-group\">\n" +
             "                                <label class=\"bmd-label-floating\">{{ __('tourAdmin.tourCreation.transportationService.conditions') }}</label>\n" +
-            "                                <input name=\"conditions[]\" type=\"text\" class=\"form-control @if($errors->tourCreation->first('conditions')) is-invalid @endif\" value=\"{{ old('conditions') }}\">\n" +
+            "                                <input name=\"conditions[]\" required type=\"text\" class=\"form-control @if($errors->tourCreation->first('conditions')) is-invalid @endif\">\n" +
             "                                @if($errors->tourCreation->first('conditions'))\n" +
             "                                    <span class=\"container text-danger text-small\" role=\"alert\">\n" +
             "                                        <strong>{{ $errors->tourCreation->first('conditions') }}</strong>\n" +
@@ -537,7 +537,7 @@
             "                        <div class=\"col-md-6\">\n" +
             "                            <div class=\"form-group\">\n" +
             "                                <label class=\"bmd-label-floating\">{{ __('tourAdmin.tourCreation.transportationService.percentage_reduction') }}</label>\n" +
-            "                                <input name=\"percentage_reduction[]\" type=\"number\" class=\"form-control @if($errors->tourCreation->first('percentage_reduction')) is-invalid @endif\" value=\"{{ old('percentage_reduction') }}\">\n" +
+            "                                <input name=\"percentage_reduction[]\" required type=\"number\" class=\"form-control @if($errors->tourCreation->first('percentage_reduction')) is-invalid @endif\">\n" +
             "                                @if($errors->tourCreation->first('percentage_reduction'))\n" +
             "                                    <span class=\"container text-danger text-small\" role=\"alert\">\n" +
             "                                        <strong>{{ $errors->tourCreation->first('percentage_reduction') }}</strong>\n" +

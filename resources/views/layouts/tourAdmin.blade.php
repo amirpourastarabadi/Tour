@@ -29,7 +29,7 @@
                     </a>
                 </li>
 
-                <li>
+                <li class="nav-item active">
                     <a class="nav-link" href="{{ route('tourAdmin.tour.index') }}">
                         <i class="material-icons">commute</i>
                         <p>{{ __('tourAdmin.tours_list.list') }}</p>
