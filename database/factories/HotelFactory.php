@@ -10,7 +10,6 @@ class HotelFactory extends Factory
 
     protected $model = Hotel::class;
 
-
     public function definition()
     {
         return [
@@ -18,7 +17,7 @@ class HotelFactory extends Factory
             'address' => $this->faker->address,
             'phone_number' => $this->faker->unique()->e164PhoneNumber,
             'stars' => rand(1, 5),
-            'image' => $this->faker->imageUrl()
+            'image' => $this->faker->imageUrl(),
         ];
     }
 }

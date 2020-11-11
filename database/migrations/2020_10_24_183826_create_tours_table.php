@@ -17,7 +17,7 @@ class CreateToursTable extends Migration
                 ->cascadeOnDelete();
 
             $table->foreignId('tour_admin_id')
-                ->references('id')
+                ->references('user_id')
                 ->on('tour_admins')
                 ->cascadeOnDelete();
 
@@ -27,7 +27,7 @@ class CreateToursTable extends Migration
             $table->smallInteger('duration');
             $table->mediumInteger('price');
             $table->smallInteger('total_num');
-            $table->smallInteger('filled_num')->comment('must be <= total_num');
+            $table->smallInteger('filled_num')->default(0)->comment('must be <= total_num');
             $table->boolean('personal_certificates');
             $table->boolean('marriage_certificates');
             $table->timestamps();

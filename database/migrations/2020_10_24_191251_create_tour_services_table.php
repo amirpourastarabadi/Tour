@@ -18,7 +18,7 @@ class CreateTourServicesTable extends Migration
 
 
             $table->string('service', 100);
-            $table->mediumInteger('service_price');
+            $table->mediumInteger('tour_service_price');
         });
     }
 

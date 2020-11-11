@@ -109,4 +109,20 @@ class Tour extends Model
             ->increment('count', $count);
 
     }
+
+    public function tourServices(){
+        return $this->hasMany(TourServices::class);
+    }
+
+    public function roomServices(){
+        return $this->hasMany(RoomServices::class);
+    }
+
+    public function transportationServices(){
+        return $this->hasMany(TransportationServices::class);
+    }
+
+    public function hotel(){
+        return $this->belongsTo(Hotel::class);
+    }
 }

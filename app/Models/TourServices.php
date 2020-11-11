@@ -9,9 +9,15 @@ class TourServices extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'tour_id',
         'service',
-        'service_price',
+        'tour_service_price',
     ];
+
+    public function tour(){
+        return $this->belongsTo(Tour::class);
+    }
 }
