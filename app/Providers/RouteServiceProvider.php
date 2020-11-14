@@ -15,6 +15,7 @@ class RouteServiceProvider extends ServiceProvider
 
 
      protected $namespace = 'App\\Http\\Controllers';
+     protected $interfaceZone = 'App\\Http\\Controllers\\InterfaceZone';
      protected $superAdminNamespace = 'App\\Http\\Controllers\\SuperAdmin';
      protected $adminNamespace = 'App\\Http\\Controllers\\Admin';
      protected $tourAdminNamespace = 'App\\Http\\Controllers\\TourAdmin';
@@ -32,6 +33,9 @@ class RouteServiceProvider extends ServiceProvider
                 ->middleware('api')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));
+
+            Route::namespace($this->interfaceZone)
+                ->group(base_path('routes/interfaceZone/web.php'));
 //
 //            Route::middleware(['web', 'auth', 'role'])
 //                ->namespace($this->passengerNamespace)
