@@ -27,6 +27,7 @@ class User extends Authenticatable
     protected $casts = [
         'mobile_number_verified_at' => 'datetime',
     ];
+
     public function passenger(){
         return $this->hasOne(Passenger::class);
     }

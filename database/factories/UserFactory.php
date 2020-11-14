@@ -14,7 +14,7 @@ class UserFactory extends Factory
 
     public function definition()
     {
-        $roles = ['admin', 'tourAdmin', 'customer'];
+        $roles = ['admin', 'tourAdmin', 'passenger'];
         return [
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,

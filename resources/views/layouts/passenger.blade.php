@@ -9,30 +9,24 @@
             Tip 2: you can also add an image using data-image tag
         -->
             <div class="logo">
-                <a href="{{ route('admin.index') }}" class="simple-text logo-normal">
-                    {{ __('Admin.layout.sidebar_title') }}
+                <a href="{{ route('passenger.profile.index') }}" class="simple-text logo-normal">
+                    {{ __('passenger.layout.sidebar_title') }}
                 </a>
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
+
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ route('admin.profile.index') }}">
+                        <a class="nav-link" href="{{ route('passenger.profile.index') }}">
                             <i class="material-icons">account_circle</i>
-                            <p>{{ __('Admin.layout.profile') }}</p>
+                            <p>{{ __('passenger.layout.profile') }}</p>
                         </a>
                     </li>
 
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ route('admin.passengers.index') }}">
-                            <i class="material-icons">list</i>
-                            <p>{{ __('Admin.layout.passengers_list') }}</p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ route('admin.tourAdmins.index') }}">
-                            <i class="material-icons">list</i>
-                            <p>{{ __('Admin.layout.tour_admin_list') }}</p>
+                        <a class="nav-link" href="{{ route('passenger.profile.edit', auth()->user()) }}">
+                            <i class="material-icons">edit</i>
+                            <p>{{ __('passenger.profile.edit') }}</p>
                         </a>
                     </li>
 

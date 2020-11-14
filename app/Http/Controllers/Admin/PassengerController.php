@@ -28,7 +28,7 @@ class PassengerController extends Controller
     {
         $pass = Str::random(10);
         $request['password'] = Hash::make($pass);
-        $request['role'] = 'customer';
+        $request['role'] = 'passenger';
         $user = User::create($request->all());
         $user->passenger()->create($request->all());
 

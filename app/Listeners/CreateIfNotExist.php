@@ -32,7 +32,7 @@ class CreateIfNotExist
             }else
             {
                 $event->request['password'] = Hash::make('password');
-                $event->request['role'] = 'customer';
+                $event->request['role'] = 'passenger';
                 $event->request['mobile_number'] = session('reservation.user');
 
                 $user = User::create($event->request->all());

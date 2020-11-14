@@ -6,6 +6,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class PassengerRequest extends FormRequest
 {
+    public $errorBag = 'passengerCompletion';
+
     public function authorize()
     {
         return true;
@@ -14,12 +16,10 @@ class PassengerRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required|max:255',
-            'last_name'=> 'required|max:255',
-            'national_code'=> 'required|unique:passengers|string|size:10',
-            'birthday'=> 'required|date',
-            'email'=> 'required|email|unique:passengers',
-            'mobile_number'=> 'required|unique:users',
+            'national_code'     => 'bail|required|unique:passengers|string|size:10',
+            'birthday'          => 'bail|required|date',
+            'email'             => 'bail|required|email|unique:passengers',
+            'telephone_number'  => 'bail|required|unique:passengers',
         ];
     }
 }

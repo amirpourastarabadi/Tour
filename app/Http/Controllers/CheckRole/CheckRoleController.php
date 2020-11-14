@@ -16,8 +16,8 @@ class CheckRoleController extends Controller
                 return redirect()->route('admin.index');
             case 'tourAdmin':
                 return redirect()->route('tourAdmin.tourAdmin.index');
-            case 'customer':
-                return redirect()->route('customer.index');
+            case 'passenger':
+                return redirect()->route('passenger.profile.index');
         }
     }
 }
