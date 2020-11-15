@@ -2,8 +2,10 @@
 
 namespace App\Listeners;
 
+use App\Models\Passenger;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Psy\Util\Str;
 
 class CreateIfNotExist
 {
@@ -21,26 +23,17 @@ class CreateIfNotExist
      * Handle the event.
      *
      * @param  object  $event
-     * @return void
+     * @return User
      */
     public function handle($event)
     {
-
-        if( ! $event->user instanceof User){
-            if($user = User::where('mobile_number', $event->user)->first()){
-                session()->put('reservation.user', $user);
-            }else
-            {
-                $event->request['password'] = Hash::make('password');
-                $event->request['role'] = 'customer';
-                $event->request['mobile_number'] = session('reservation.user');
-
-                $user = User::create($event->request->all());
-                $passenger = $user->passenger()->create($event->request->all());
-
-                session()->put('reservation.user', $user);
-            }
+        if($user = User::where('mobile_number', $event->request['mobile_number'])->first()){
+            return $user;
         }
-
+        $event->request['first_name'] = $event->request['last_name'] = 'guest';
+        $event->request['password'] = Hash::make('password');
+        $user = User::create($event->request->all());
+        Passenger::create(['user_id' => $user->id, 'national_code' => \Illuminate\Support\Str::random(10)]);
+        return $user;
     }
 }

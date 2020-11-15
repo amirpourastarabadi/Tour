@@ -110,16 +110,43 @@ class Tour extends Model
 
     }
 
-    public function tourServices(){
+    public static function search($request)
+    {
+        $result = Tour::where('origin', request('origin'))
+            ->where('destination', request('destination'))
+            ->where('start_at', request('start_at'))
+            ->where('duration', request('duration'))
+            ->get();
+
+        $result = $result->filter(function ($item) {
+            return ($item['total_num'] - $item['filled_num']) >= request('count');
+        });
+
+        return $result;
+    }
+
+    public function tourServices()
+    {
         return $this->hasMany(TourServices::class);
     }
 
-    public function roomServices(){
+    public function roomServices()
+    {
         return $this->hasMany(RoomServices::class);
     }
 
-    public function transportationServices(){
+    public function transportationServices()
+    {
         return $this->hasMany(TransportationServices::class);
     }
 
+    public function roomService($id){
+        return RoomServices::find($id);
+    }
+    public function transportationService($id){
+        return TransportationServices::find($id);
+    }
+    public function tourServices2($ids){
+        return TourServices::find($ids);
+    }
 }

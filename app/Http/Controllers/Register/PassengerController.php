@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PassengerRegisterValidation;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class PassengerController extends Controller
@@ -15,7 +16,7 @@ class PassengerController extends Controller
         $request = $request->toArray();
         $request['role'] = 'customer';
         $request['password'] = Hash::make($request['password']);
-        User::create($request);
+        $user = User::create($request);
         return redirect()->back();
     }
 }

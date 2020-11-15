@@ -10,6 +10,7 @@ class RoomServices extends Model
     use HasFactory;
 
     public $timestamps = false;
+    protected $table = 'room_services';
 
     protected $fillable = [
         'tour_id',
