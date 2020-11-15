@@ -23,9 +23,6 @@
                             </select>
                         @endif
                         <br/>
-                        <a href="" class="float-right mr-5">
-                            {{ __('tourAdmin.tourCreation.tour.create_hotel') }}
-                        </a>
                         @if($errors->tourCreation->first('hotel'))
                             <span class="container text-danger text-small" role="alert">
                                 <strong>{{ $errors->tourCreation->first('hotel') }}</strong>
