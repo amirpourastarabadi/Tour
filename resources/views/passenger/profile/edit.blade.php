@@ -59,7 +59,7 @@
             @component('components.passenger.edit-field', [
                         'LABEL'   => __('passenger.register_completion.birthday'),
                         'NAME'    => 'birthday',
-                        'TYPE'    => 'text',
+                        'TYPE'    => 'date',
                         'FIELD'    => $passenger->passenger->birthday,
                         ])
             @endcomponent
