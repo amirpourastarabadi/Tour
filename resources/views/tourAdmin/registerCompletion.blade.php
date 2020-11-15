@@ -33,7 +33,7 @@
         <div class="form-row">
             <div class="form-group bmd-form-group col-md-6">
                 <label>{{ __('tourAdmin.register_completion.agency') }}</label>
-                <input name="agency" type="text" placeholder="{{ __('tourAdmin.register_completion.agency') }}" class="form-control col-8 @if($errors->tourAdminCompletion->first('agency')) is-invalid @endif">
+                <input name="agency" value="{{ old('agency') }}" type="text" placeholder="{{ __('tourAdmin.register_completion.agency') }}" class="form-control col-8 @if($errors->tourAdminCompletion->first('agency')) is-invalid @endif">
 
                 @if($errors->tourAdminCompletion->first('agency'))
                     <span class="container text-danger text-small" role="alert">
@@ -44,7 +44,7 @@
 
             <div class="form-group col-md-6">
                 <label>{{ __('tourAdmin.register_completion.start_at') }}</label>
-                <input name="start_at" type="date" class="form-control col-8 @if($errors->tourAdminCompletion->first('start_at')) is-invalid @endif">
+                <input name="start_at" value="{{ old('start_at') }}" type="date" class="form-control col-8 @if($errors->tourAdminCompletion->first('start_at')) is-invalid @endif">
                 @if($errors->tourAdminCompletion->first('start_at'))
                     <span class="container text-danger text-small" role="alert">
                         <strong>{{ $errors->tourAdminCompletion->first('start_at') }}</strong>
@@ -58,7 +58,7 @@
         <div class="form-row">
             <div class="form-group bmd-form-group col-md-6">
                 <label>{{ __('tourAdmin.register_completion.guild_code') }}</label>
-                <input name="guild_code" type="text" placeholder="{{ __('tourAdmin.register_completion.guild_code') }}" class="form-control col-8 @if($errors->tourAdminCompletion->first('guild_code')) is-invalid @endif">
+                <input name="guild_code" value="{{ old('guild_code') }}" type="text" placeholder="{{ __('tourAdmin.register_completion.guild_code') }}" class="form-control col-8 @if($errors->tourAdminCompletion->first('guild_code')) is-invalid @endif">
 
                 @if($errors->tourAdminCompletion->first('guild_code'))
                     <span class="container text-danger text-small" role="alert">
@@ -69,7 +69,7 @@
 
             <div class="form-group col-md-6">
                 <label>{{ __('tourAdmin.register_completion.email') }}</label>
-                <input name="email" type="email" placeholder="{{ __('tourAdmin.register_completion.email') }}" class="form-control col-8 @if($errors->tourAdminCompletion->first('email')) is-invalid @endif">
+                <input name="email" value="{{ old('email') }}" type="email" placeholder="{{ __('tourAdmin.register_completion.email') }}" class="form-control col-8 @if($errors->tourAdminCompletion->first('email')) is-invalid @endif">
                 @if($errors->tourAdminCompletion->first('email'))
                     <span class="container text-danger text-small" role="alert">
                         <strong>{{ $errors->tourAdminCompletion->first('email') }}</strong>
@@ -83,7 +83,7 @@
         <div class="form-row">
             <div class="form-group bmd-form-group col-md-6">
                 <label>{{ __('tourAdmin.register_completion.telephone_number') }}</label>
-                <input name="telephone_number" type="text" placeholder="{{ __('tourAdmin.register_completion.telephone_number_description') }}" class="form-control col-8 @if($errors->tourAdminCompletion->first('telephone_number')) is-invalid @endif">
+                <input name="telephone_number" value="{{ old('telephone_number') }}" type="text" placeholder="{{ __('tourAdmin.register_completion.telephone_number_description') }}" class="form-control col-8 @if($errors->tourAdminCompletion->first('telephone_number')) is-invalid @endif">
 
                 @if($errors->tourAdminCompletion->first('telephone_number'))
                     <span class="container text-danger text-small" role="alert">
