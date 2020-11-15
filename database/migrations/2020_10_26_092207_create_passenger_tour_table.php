@@ -21,6 +21,16 @@ class CreatePassengerTourTable extends Migration
                 ->on('tours')
                 ->cascadeOnDelete();
 
+            $table->foreignId('transportation_service_id')
+                ->references('id')
+                ->on('transportation_services')
+                ->cascadeOnDelete();
+
+            $table->foreignId('room_service_id')
+                ->references('id')
+                ->on('room_services')
+                ->cascadeOnDelete();
+
             $table->integer('count');
 
             $table->timestamps();

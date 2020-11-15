@@ -14,14 +14,14 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/checkRoll';
 
 
-     protected $namespace = 'App\\Http\\Controllers';
-     protected $interfaceZone = 'App\\Http\\Controllers\\InterfaceZone';
-     protected $superAdminNamespace = 'App\\Http\\Controllers\\SuperAdmin';
-     protected $adminNamespace = 'App\\Http\\Controllers\\Admin';
-     protected $tourAdminNamespace = 'App\\Http\\Controllers\\TourAdmin';
-     protected $passengerNamespace = 'App\\Http\\Controllers\\Passenger';
-     protected $checkRoleNamespace = 'App\\Http\\Controllers\\CheckRole';
-     protected $registerNamespace = 'App\\Http\\Controllers\\Register';
+    protected $namespace = 'App\\Http\\Controllers';
+    protected $interfaceZone = 'App\\Http\\Controllers\\InterfaceZone';
+    protected $superAdminNamespace = 'App\\Http\\Controllers\\SuperAdmin';
+    protected $adminNamespace = 'App\\Http\\Controllers\\Admin';
+    protected $tourAdminNamespace = 'App\\Http\\Controllers\\TourAdmin';
+    protected $passengerNamespace = 'App\\Http\\Controllers\\Passenger';
+    protected $checkRoleNamespace = 'App\\Http\\Controllers\\CheckRole';
+    protected $registerNamespace = 'App\\Http\\Controllers\\Register';
 
 
     public function boot()
@@ -34,12 +34,13 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));
 
-            Route::namespace($this->interfaceZone)
+            Route::middleware(['web'])
+                ->namespace($this->interfaceZone)
                 ->group(base_path('routes/interfaceZone/web.php'));
-//
-//            Route::middleware(['web', 'auth', 'role'])
-//                ->namespace($this->passengerNamespace)
-//                ->group(base_path('routes/customer/web.php'));
+
+            Route::middleware(['web', 'auth', 'role'])
+                ->namespace($this->passengerNamespace)
+                ->group(base_path('routes/customer/web.php'));
 
             Route::middleware(['web', 'auth', 'role'])
                 ->namespace($this->tourAdminNamespace)

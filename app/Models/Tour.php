@@ -140,4 +140,13 @@ class Tour extends Model
         return $this->hasMany(TransportationServices::class);
     }
 
+    public function roomService($id){
+        return RoomServices::find($id);
+    }
+    public function transportationService($id){
+        return TransportationServices::find($id);
+    }
+    public function tourServices2($ids){
+        return TourServices::find($ids);
+    }
 }

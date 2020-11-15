@@ -15,12 +15,11 @@ class CheckUser
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $user;
     public $request;
-    public function __construct($user, $request)
+    public function __construct($request)
     {
-        $this->user = $user;
         $this->request = $request;
+//        dd($this->request);
     }
 
     /**
