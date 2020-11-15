@@ -1,7 +1,7 @@
 @extends('layouts.navbar')
 
 @section('main_content')
-    @if(auth()->user() || session('user'))
+    @auth()
         <div class="container mt-5">
             <h3>Reservation</h3>
             <hr>
@@ -199,8 +199,10 @@
                                         <div class="form-group">
                                             How many tickets do you need?
                                             <div class="form-group">
-                                                <input type="number" max="{{$tour->total_num - $tour->filled_num}}" style="display: inline"
+                                                <input type="number" max="{{$tour->total_num - $tour->filled_num}}"
+                                                       style="display: inline"
                                                        name="count" required>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -216,17 +218,22 @@
                 </div>
             </div>
         </div>
-    @else
+    @endauth
+    @guest()
         @if(@session('verification'))
-            <div class="card-header text-center mb-5 mt-3"><h4>Enter Verification Code</h4></div>
-            <div class="my-2 alert w-50 alert-info text-center" style="margin-left: 25%">this code will send to your mobile in production</div>
+            <div class="card-header text-center mb-5 mt-3">
+                <h4>Enter Verification Code</h4>
+            </div>
+            <div class="my-2 alert w-50 alert-info text-center" style="margin-left: 25%">this code will send to your
+                mobile in production
+            </div>
             <div class="card-body">
                 <form class="form" action="{{route('search.verification')}}" method="post">
                     @csrf
                     <div class="form-group w-50 mb-5" style="margin-left: 25%">
                         <label for="">Verification Code</label>
                         <input type="text" name="verification_code" class="form-control my-2"
-                        value="{{session('verification')}}">
+                               value="{{session('verification')}}">
                     </div>
 
                     <input type="submit" class="btn btn-success w-50" value="Next"
@@ -240,7 +247,7 @@
                     @csrf
                     <div class="form-group w-50 mb-5" style="margin-left: 25%">
                         <label for="">Mobile Number</label>
-                        <input type="text" name="mobile_number" class="form-control my-2">
+                        <input type="text" name="mobile_number" class="form-control my-2" minlength="5" maxlength="15">
                     </div>
 
                     <input type="submit" class="btn btn-success w-50" value="verification code"
@@ -249,7 +256,7 @@
                 </form>
             </div>
         @endif
-    @endif
+    @endguest
 
 @endsection
 

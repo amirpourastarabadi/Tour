@@ -117,11 +117,9 @@ class Tour extends Model
             ->where('start_at', request('start_at'))
             ->where('duration', request('duration'))
             ->get();
-
         $result = $result->filter(function ($item) {
             return ($item['total_num'] - $item['filled_num']) >= request('count');
         });
-
         return $result;
     }
 

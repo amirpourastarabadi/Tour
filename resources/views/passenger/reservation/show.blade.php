@@ -11,7 +11,8 @@
                     <ul class="container justify-content-around nav nav-tabs md-tabs tabs-2">
 
                         <li class="nav-item">
-                            <a class="nav-link active d-inline-flex" id="passenger" data-toggle="tab" href="#tourInformationTab">
+                            <a class="nav-link active d-inline-flex" id="passenger" data-toggle="tab"
+                               href="#tourInformationTab">
                                 <i class="material-icons">card_travel</i>
                                 <p>{{ __('passenger.show.header') }}</p>
                             </a>
@@ -32,7 +33,8 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link d-inline-flex" id="tourAdmin" data-toggle="tab" href="#transportationServiceTab">
+                            <a class="nav-link d-inline-flex" id="tourAdmin" data-toggle="tab"
+                               href="#transportationServiceTab">
                                 <i class="material-icons">flight</i>
                                 <p>{{ __('tourAdmin.tourCreation.transportationService.service') }}</p>
                             </a>
@@ -147,7 +149,8 @@
 
                         <div class="col-md-6">
                             <div class="form-group" style="font-size: 20px;">
-                                {{ __('tourAdmin.tourCreation.tour.marriage_certificates') }}: <span class="text-primary text-bold">
+                                {{ __('tourAdmin.tourCreation.tour.marriage_certificates') }}: <span
+                                    class="text-primary text-bold">
                                     @if($tour->marriage_certificates == 1)
                                         {{ __('tourAdmin.tourCreation.tour.yes') }}
                                     @else
@@ -159,7 +162,8 @@
 
                         <div class="col-md-6">
                             <div class="form-group" style="font-size: 20px;">
-                                {{ __('tourAdmin.tourCreation.tour.personal_certificates') }}: <span class="text-primary text-bold">
+                                {{ __('tourAdmin.tourCreation.tour.personal_certificates') }}: <span
+                                    class="text-primary text-bold">
                                     @if($tour->personal_certificates == 1)
                                         {{ __('tourAdmin.tourCreation.tour.yes') }}
                                     @else
@@ -174,35 +178,37 @@
                     <br/>
 
                 </div>
-                {{--#TODO EDIT SERVICES--}}
-                <!-- Tour Services Tab -->
-                <div class="tab-pane fade" id="tourServicesTab">
+            {{--#TODO EDIT SERVICES--}}
+            <!-- Tour Services Tab -->
+                @if($tourServices)
+                    <div class="tab-pane fade" id="tourServicesTab">
 
-                    @foreach($tourServices as $tourService)
-                        <br/>
-                        <div class="row container ml-2">
+                        @foreach($tourServices as $tourService)
+                            <br/>
+                            <div class="row container ml-2">
 
-                            @component('components.passenger.show-fields', [
-                                        'NAME' => __('tourAdmin.tourCreation.tourService.tour_service'),
-                                        'VALUE' => $tourService->service,
-                                        ])
-                            @endcomponent
+                                @component('components.passenger.show-fields', [
+                                            'NAME' => __('tourAdmin.tourCreation.tourService.tour_service'),
+                                            'VALUE' => $tourService->service,
+                                            ])
+                                @endcomponent
 
-                            @component('components.passenger.show-fields', [
-                                        'NAME' => __('tourAdmin.tourCreation.tourService.tour_service_price'),
-                                        'VALUE' => $tourService->tour_service_price,
-                                        ])
-                            @endcomponent
+                                @component('components.passenger.show-fields', [
+                                            'NAME' => __('tourAdmin.tourCreation.tourService.tour_service_price'),
+                                            'VALUE' => $tourService->tour_service_price,
+                                            ])
+                                @endcomponent
 
-                        </div>
+                            </div>
 
-                        <hr style="border-top: 1px dashed gray;">
-                    @endforeach
+                            <hr style="border-top: 1px dashed gray;">
+                        @endforeach
 
-                </div>
-
-                <!-- Room Services Tab -->
-                <div class="tab-pane fade" id="roomServicesTab">
+                    </div>
+                @endif
+            <!-- Room Services Tab -->
+                @if($roomService)
+                    <div class="tab-pane fade" id="roomServicesTab">
                         <br/>
                         <div class="row container ml-2">
 
@@ -237,10 +243,11 @@
 
                         </div>
 
-                </div>
-
-                <!-- Transportation Service Tab -->
-                <div class="tab-pane fade" id="transportationServiceTab">
+                    </div>
+                @endif
+            <!-- Transportation Service Tab -->
+                @if($transportationService)
+                    <div class="tab-pane fade" id="transportationServiceTab">
 
                         <br/>
                         <div class="row container ml-2">
@@ -327,7 +334,8 @@
 
                         </div>
 
-                </div>
+                    </div>
+                @endif
 
             </div>
         </div>

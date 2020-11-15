@@ -7,27 +7,27 @@
                   style="margin-top: 20px; height: 170px;width: 100%; background-color: rgba(0,0,0,.7)">
                 <div class="form-group bmd-form-group ml-5">
                     <div class="input-group">
-                        <input name="origin" type="text" value="{{request()->query('origin')}}"
+                        <input name="origin" type="text" value="{{session('search.query.origin')}}"
                                class="form-control text-light text-bolder" required>
                     </div>
                 </div>
                 <div class="form-group bmd-form-group ml-5">
                     <div class="input-group">
-                        <input name="destination" type="text" value="{{request()->query('destination')}}"
+                        <input name="destination" type="text" value="{{session('search.query.destination')}}"
                                class="form-control text-light text-bolder" required>
                     </div>
                 </div>
                 <div class="form-group bmd-form-group ml-5">
                     <div class="input-group">
 
-                        <input name="start_at" type="date" value="{{request()->query('start_at')}}"
+                        <input name="start_at" type="date" value="{{session('search.query.start_at')}}"
                                class="form-control text-light" required>
                     </div>
                 </div>
                 <div class="form-group bmd-form-group ml-5">
                     <div class="input-group">
 
-                        <input name="duration" type="text" value="{{request()->query('duration'). " Days"}}"
+                        <input name="duration" type="text" value="{{session('search.query.duration')." days"}}"
                                class="form-control text-light" required>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                     <div class="input-group">
 
                         <input name="count" type="text" max="10" min="1" required
-                               value="{{request()->query('count')." Person"}}"
+                               value="{{session('search.query.count'). " persons"}}"
                                class="form-control text-light">
                     </div>
                 </div>

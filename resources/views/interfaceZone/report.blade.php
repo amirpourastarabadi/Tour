@@ -1,7 +1,7 @@
 @extends('layouts.navbar')
 @push('css')
     <style>
-        h3, h5  {
+        h3, h5 {
             color: purple;
         }
     </style>
@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row">
             <div class="alert alert-success w-100 text-center">
-                Thanks for your shop "{{ session('user')->first_name.", ".session('user')->last_name }}"
+                Thanks for your shop "{{ Auth::user()->first_name.", ".Auth::user()->last_name }}"
             </div>
         </div>
         <div class="row">
@@ -43,22 +43,27 @@
             <div class="col-12 mt-3">
                 <h5><b>Room Service:</b></h5>
             </div>
-            <div class="col-3">Beds: <b>{{$roomService->beds}}</b></div>
-            <div class="col-3">Room Type: <b>{{$roomService->room_type}}</b></div>
-            <div class="col-3">Service: <b>{{$roomService->room_service}}</b></div>
-            <div class="col-3">Price: <b>{{$tour->prettyPrice($roomService->room_service_price)}}</b></div>
+            @if($roomService)
+                <div class="col-3">Beds: <b>{{$roomService->beds}}</b></div>
+                <div class="col-3">Room Type: <b>{{$roomService->room_type}}</b></div>
+                <div class="col-3">Service: <b>{{$roomService->room_service}}</b></div>
+                <div class="col-3">Price: <b>{{$tour->prettyPrice($roomService->room_service_price)}}</b></div>
+            @endif
             <hr>
             <div class="col-12 mt-3">
                 <h5><b>Tour Services:</b></h5>
             </div>
-            @foreach($tourServices as $service)
-                <div class="col-9">Service: <b>{{$service->service}}</b></div>
-                <div class="col-3">Price: <b>{{$tour->prettyPrice($service->tour_service_price)}}</b></div>
-            @endforeach
+            @if($tourServices)
+                @foreach($tourServices as $service)
+                    <div class="col-9">Service: <b>{{$service->service}}</b></div>
+                    <div class="col-3">Price: <b>{{$tour->prettyPrice($service->tour_service_price)}}</b></div>
+                @endforeach
+            @endif
             <hr>
             <div class="col-12 mt-3 mb-3">
                 <h5><b>Transportation Service:</b></h5>
             </div>
+            @if($transportationService)
                 <div class="col-4"> Vehicle: <b>{{$transportationService->vehicle}}</b></div>
                 <div class="col-4"> Type: <b>{{$transportationService->transition_type}}</b></div>
                 <div class="col-4"> Company: <b>{{$transportationService->company}}</b></div>
@@ -69,7 +74,8 @@
                 <div class="col-4"> Condition: <b>{{$transportationService->condition}}</b></div>
                 <div class="col-4"> Percentage Reduction: <b>{{$transportationService->percentage_reduction}}</b></div>
                 <div class="col-4"> Price: <b>{{$transportationService->transition_service_price}}</b></div>
-            </div>
+            @endif
+        </div>
 
         <a href="{{ route('passenger.profile.index')  }}" class="btn btn-info">Profile</a>
 
