@@ -95,7 +95,6 @@ class InterfaceZoneController extends Controller
         if (session('verification')) {
             $this->guard()->login(session('tmp_user'));
             session()->flash('tmp_user', 'verification');
-//            session()->put('user', session('tmp_user')[0]);
             return back();
         }
 
