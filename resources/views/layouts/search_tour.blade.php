@@ -6,14 +6,14 @@
             <div class="form-group bmd-form-group ml-5">
                 <label>Origin</label>
                 <div class="input-group">
-                    <input name="origin" type="text" value="{{$test_item->origin}}"
+                    <input name="origin" type="text" value=""
                            class="form-control text-light text-bolder" required>
                 </div>
             </div>
             <div class="form-group bmd-form-group ml-2">
                 <label>Destination</label>
                 <div class="input-group">
-                    <input name="destination" type="text" value="{{$test_item->destination}}"
+                    <input name="destination" type="text" value=""
                            class="form-control text-light text-bolder" required>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                 <label>Date</label>
                 <div class="input-group">
 
-                    <input name="start_at" type="date" value="{{$test_item->start_at}}"
+                    <input name="start_at" type="date" value=""
                            class="form-control text-light" required>
                 </div>
             </div>
@@ -29,14 +29,14 @@
                 <label>Duration</label>
                 <div class="input-group">
 
-                    <input name="duration" type="number" value="{{$test_item->duration}}"
+                    <input name="duration" type="number" value=""
                            class="form-control text-light" required>
                 </div>
             </div>
             <div class="form-group bmd-form-group ml-4">
                 <label>Number of tickets</label>
                 <div class="input-group">
-                    <input name="count" type="text" max="10" min="1" required value="2"
+                    <input name="count" type="text" max="10" min="1" required value=""
                            class="form-control text-light">
                 </div>
             </div>
