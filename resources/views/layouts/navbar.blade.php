@@ -40,8 +40,8 @@
                                 <i class="material-icons">home</i>
                                 <p>{{ __('navbar.main.home') }}</p>
                             </a>
-                            {{--                            {{ route( Auth::user()->role . '.profile.index' ) }}--}}
-                            <a class="nav-link d-inline-flex" href="">
+
+                            <a class="nav-link d-inline-flex" href="{{ route( Auth::user()->role . '.profile.index' ) }}">
                                 <i class="material-icons">dashboard</i>
                                 <p>{{ __('navbar.main.panel') }}</p>
                             </a>
@@ -69,16 +69,6 @@
                     @endif
                 </li>
             </ul>
-            <form class="form-inline ml-auto">
-                <div class="form-group has-white">
-                    <input type="text" class="form-control" placeholder="{{ __('navbar.main.search') }}">
-                </div>
-
-                {{--#TODO create search process--}}
-                <button type="submit" class="btn btn-neutral btn-icon btn-round">
-                    <i class="material-icons">search</i>
-                </button>
-            </form>
         </div>
     </div>
 </nav>

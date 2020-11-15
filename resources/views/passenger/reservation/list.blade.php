@@ -30,12 +30,6 @@
                         </button>
                     </form>
 
-                    <form action="{{ route('passenger.reservation.edit', $tour) }}" method="GET">
-                        <button type="submit" rel="tooltip" class="btn btn-success" title="{{ __('passenger.list.edit') }}">
-                            <i class="material-icons">edit</i>
-                        </button>
-                    </form>
-
                     <form action="{{ route('passenger.reservation.destroy', $tour) }}" method="POST">
                         @csrf
                         @method('DELETE')

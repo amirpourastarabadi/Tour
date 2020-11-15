@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Models\Passenger;
 use App\Models\User;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Psy\Util\Str;
 
@@ -31,6 +32,7 @@ class CreateIfNotExist
             return $user;
         }
         $event->request['first_name'] = $event->request['last_name'] = 'guest';
+        $event->request['role'] = 'passenger';
         $event->request['password'] = Hash::make('password');
         $user = User::create($event->request->all());
         Passenger::create(['user_id' => $user->id, 'national_code' => \Illuminate\Support\Str::random(10)]);

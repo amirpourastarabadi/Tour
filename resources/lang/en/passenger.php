@@ -44,6 +44,7 @@ return [
             'cancel_edit'       => 'Are you sure you want to cancel edit?',
             'cancel_create'     => 'Are you sure you want to cancel create tour?',
             'cancel_tour'       => 'Are you sure you want to cancel this tour?',
+            'tour_canceled'     => 'Tour Canceled successfully.',
         ],
     ],
     'register_completion' => [

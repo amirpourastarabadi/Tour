@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row">
             <div class="alert alert-success w-100 text-center">
-                Thanks for your shop "{{session('user')[0]->first_name.", ".session('user')[0]->last_name}}"
+                Thanks for your shop "{{ session('user')->first_name.", ".session('user')->last_name }}"
             </div>
         </div>
         <div class="row">
@@ -70,10 +70,10 @@
                 <div class="col-4"> Percentage Reduction: <b>{{$transportationService->percentage_reduction}}</b></div>
                 <div class="col-4"> Price: <b>{{$transportationService->transition_service_price}}</b></div>
             </div>
-        <a href="" class="btn btn-info">Profile</a>
-        <a href="{{url('/')}}" class="btn btn-success">Home</a>
-    </div>
 
+        <a href="{{ route('passenger.profile.index')  }}" class="btn btn-info">Profile</a>
+
+        <a href="{{ url('/') }}" class="btn btn-success">Home</a>
     </div>
 
 @endsection

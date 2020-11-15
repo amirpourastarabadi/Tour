@@ -5,12 +5,16 @@ namespace App\Http\Controllers\InterfaceZone;
 use App\Events\CheckUser;
 use App\Http\Controllers\Controller;
 use App\Models\Tour;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class InterfaceZoneController extends Controller
 {
+    use RegistersUsers;
+
     public function index()
     {
         $tours = Tour::search(request());
@@ -25,8 +29,11 @@ class InterfaceZoneController extends Controller
 
     public function store(Request $request, $tour)
     {
+        if (!session('user')){
+            session()->put('user', Auth::user());
+        }
         if($reservation = DB::table('passenger_tour')->insertGetId([
-            'passenger_id' => session('user')[0]->passenger->id,
+            'passenger_id' => session('user')->passenger->id,
             'transportation_service_id' => $request['transportation_service'],
             'room_service_id' => $request['room_service'],
             'tour_id' => $tour,
@@ -84,15 +91,14 @@ class InterfaceZoneController extends Controller
     public function verification(Request $request)
     {
         if (session('verification')) {
-            session()->put('user', session('tmp_user'));
+            session()->put('user', session('tmp_user')[0]);
             return back();
         }
         $request->validate(['mobile_number' => 'required|string|min:10|max:15']);
-        session()->put('tmp_user', event(new CheckUser($request)));
+        $user = event(new CheckUser($request))[0];
+        $this->guard()->login($user);
+        session()->put('tmp_user', $user);
         session()->put('verification', Str::random(10));
         return back();
-
     }
-
-
 }

@@ -24,7 +24,7 @@
 
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ route('tourAdmin.reservation.index') }}">
-                        <i class="material-icons">account_circle</i>
+                        <i class="material-icons">list</i>
                         <p>Reservation</p>
                     </a>
                 </li>

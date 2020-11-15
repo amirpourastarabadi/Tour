@@ -178,7 +178,7 @@
                 <!-- Tour Services Tab -->
                 <div class="tab-pane fade" id="tourServicesTab">
 
-                    @foreach($tour->tourServices as $tourService)
+                    @foreach($tourServices as $tourService)
                         <br/>
                         <div class="row container ml-2">
 
@@ -203,8 +203,6 @@
 
                 <!-- Room Services Tab -->
                 <div class="tab-pane fade" id="roomServicesTab">
-
-                    @foreach($tour->roomServices as $roomService)
                         <br/>
                         <div class="row container ml-2">
 
@@ -239,16 +237,11 @@
 
                         </div>
 
-                        <hr style="border-top: 1px dashed gray;">
-
-                    @endforeach
-
                 </div>
 
                 <!-- Transportation Service Tab -->
                 <div class="tab-pane fade" id="transportationServiceTab">
 
-                    @foreach($tour->transportationServices as $transportationService)
                         <br/>
                         <div class="row container ml-2">
 
@@ -334,10 +327,6 @@
 
                         </div>
 
-                        <hr style="border-top: 1px dashed gray;">
-
-                    @endforeach
-
                 </div>
 
             </div>
@@ -348,10 +337,6 @@
         <form action="{{ route('passenger.reservation.destroy', $tour) }}" method="POST">
             @csrf
             @method('DELETE')
-
-            <a href="{{ route('passenger.reservation.edit', $tour) }}" type="submit" class="btn btn-success">
-                {{ __('passenger.show.edit') }}
-            </a>
 
             <a href="{{ route('passenger.reservation.index') }}" type="submit" class="btn btn-info text-light">
                 {{ __('tourAdmin.list.back') }}
