@@ -7,3 +7,5 @@ Route::get('tourAdmin/completion', 'TourAdminController@registerCompletion')->na
 Route::post('tourAdmin/{tourAdmin}/update', 'TourAdminController@update')->name('tourAdmin.update');
 
 Route::post('passenger', 'PassengerController@store')->name('passenger');
+Route::get('passenger/completion', 'PassengerController@registerCompletion')->name('passenger.completion');
+Route::post('passenger/{passenger}/update', 'PassengerController@update')->name('passenger.update');

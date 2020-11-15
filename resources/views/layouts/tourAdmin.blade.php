@@ -2,7 +2,7 @@
 
 @section('main_content')
     <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white">
+    <div class="sidebar" style="margin-top: 74px" data-color="purple" data-background-color="white">
         <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 

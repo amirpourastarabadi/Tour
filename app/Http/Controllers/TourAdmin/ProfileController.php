@@ -30,7 +30,6 @@ class ProfileController extends Controller
         Auth::user()->update($request->all());
         Auth::user()->tourAdmin->update($request->all());
         return redirect()->route('tourAdmin.profile.index');
-
     }
 
     public function restPassword()

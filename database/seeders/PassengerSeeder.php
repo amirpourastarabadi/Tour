@@ -14,7 +14,7 @@ class PassengerSeeder extends Seeder
 
     public function run()
     {
-        $users = User::where('role', 'customer')->get();
+        $users = User::where('role', 'passenger')->get();
         foreach ($users as $user){
             $user->passenger()->create(Passenger::factory()->make()->toArray());
         }
