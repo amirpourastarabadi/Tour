@@ -6,4 +6,4 @@ Try to handle Tour creation, Tour Reservation, ... .
 
 ## Origin
 
-50% of this app created by Mr. Alireza pormehr
+This is result of collaboration with Mr. Alireza pormehr
